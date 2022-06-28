@@ -46,3 +46,25 @@ def rating():
         rating += 10
     if data_sent['driver'] == 'Nicholas Latifi':
         rating += -30
+    # Car rating
+    if data_sent['car'] == 'Alfa Romeo Racing':
+        rating += 25
+    if data_sent['car'] == 'AlphaTauri-Red Bull':
+        rating += 20
+    if data_sent['car'] == 'Alpine-Renault':
+        rating += 30
+    if data_sent['car'] == 'Aston Martin':
+        rating += 15
+    if data_sent['car'] == 'Ferrari':
+        rating += 45
+    if data_sent['car'] == 'Haas-Ferrari':
+        rating += 10
+    if data_sent['car'] == 'McLaren-Mercedes':
+        rating += 35 
+    if data_sent['car'] == 'Mercedes-AMG':
+        rating += 40
+    if data_sent['car'] == 'Red Bull Racing':
+        rating += 50
+    if data_sent['car'] == 'Williams-Mercedes':
+        rating += 5
+    return str(rating)
