@@ -1,0 +1,43 @@
+version: "3.8"
+services:
+  service_1:
+    container_name: front-end
+    image: cars-front:1
+    build: ./front-end
+    networks:
+      - car-net
+  service_2:
+    container_name: driver-api
+    image: cars-drivers:1
+    build: ./driver-api
+    networks:
+      - car-net
+  service_3:
+    container_name: car-api
+    image: car-generator:1
+    build: ./car-api
+    networks:
+      - car-net
+  service_4:
+    container_name: rating-api
+    image: output-rating:1
+    build: ./rating-api
+    networks:
+      - car-net
+  nginx:
+    container_name: nginx
+    image: nginx:latest
+    ports:
+      - target: 80
+        published: 80
+        protocol: tcp
+    volumes:
+      - type: bind
+        source: ./nginx.conf
+        target: /etc/nginx/nginx.conf
+    networks:
+      - car-net
+    depends_on:
+      - service_1
+networks:
+  car-net:
