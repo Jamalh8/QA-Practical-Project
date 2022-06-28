@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>F1 Ratings Generator!</title>
+    </head>
+    <style>
+        body{
+        background-color:lightseagreen;
+    }
+    </style>
+        <body style="text-align: center">
+            <h1>F1 Ratings Generator!</h1>
+        <button><span><a href="{{ url_for('generate') }}">Generate ratings</a></span></button>
+        {% block speed %}{% endblock speed %}
+    </body>
+</html>
