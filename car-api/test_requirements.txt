@@ -1,0 +1,4 @@
+Flask
+flask-testing
+pytest
+pytest-cov
