@@ -66,13 +66,30 @@ Based on the requirements I came up with the idea to create a Formula 1 rating g
 
 #### Design
 
-After I confirmed my idea, I started to work on the design of the application that it'd like the fron end user to see. I decided to go with a very simple design for the front end. 
+Once I was commit to my idea, I started to work on the design of the application that it'd like the fron end user to see. I decided to go with a very simple design for the front end. 
 
 The information that will be provided are
 - The random driver that was generated.
 - The random car that was generated.
 - The final rating output.
+- A button that user can click to generate a new set of random driver,car, and ratings.
 
 A visual design of the application front end can be seen below. 
 
+![alt text](https://github.com/Jamalh8/QA-Practical-Project/blob/dev/images_and_diagram/Application-design.png)
 
+### Project tracking
+___
+
+**Requirements** 
+
+>An Asana board (or equivalent Kanban board tech) with full expansion on tasks needed to complete the project.
+___
+
+To meet the requirements I used Trello for my project tracking. Trello incorporates a Kanban board. I assigned tasks that were required to meet the acceptance criteria of this project.
+
+MoSCoW prioritisation was used and this dictated the tasks that were put into the sprint backlog. A visual of my Trello board can be down below to help understand this. 
+
+![alt text](https://github.com/Jamalh8/QA-Practical-Project/blob/dev/images_and_diagram/Trello-%20In%20progress.png)
+
+You can view my trello board directly by clicking [here](https://trello.com/b/r4G0troy/qa-practical-proj).
