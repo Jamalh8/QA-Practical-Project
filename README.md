@@ -49,19 +49,19 @@ ___
 
 Based on the requirements I came up with the idea to create a Formula 1 rating generator.
 
-**Service 1**
+`Service 1`
 > This will interact and provide rating output to the user. The rating output will be aquired from the information on Service 4. 
 
-**Service 2**
+`Service 2`
 > Generate a random pick of drivers from a list.
 
-**Service 3**
+`Service 3`
 > Generate a random pick of cars from a list.
 
-**Service 4**
+`Service 4`
 > Take in the output from Service 2 and 3 and calcualte their ratings based on the car and driver that was generated.
 
-**Service 5**
+`Service 5`
 > Nginx reverse proxy
 
 #### Design
