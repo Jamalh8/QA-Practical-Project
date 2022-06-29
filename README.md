@@ -1,7 +1,7 @@
 # QA-Practical-Project
-___
+
 ## Table of content 
-___
+
 [Project Introduction](#Project-Introduction)
 
 [Application Idea and Design](#Application-Idea-and-Design)
