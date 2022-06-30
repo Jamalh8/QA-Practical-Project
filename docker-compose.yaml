@@ -3,24 +3,32 @@ services:
   service_1:
     container_name: front-end
     image: cars-front:1
+    deploy:
+      replicas: 3
     build: ./front-end
     networks:
       - car-net
   service_2:
     container_name: driver-api
     image: cars-drivers:1
+    deploy:
+      replicas: 3
     build: ./driver-api
     networks:
       - car-net
   service_3:
     container_name: car-api
     image: car-generator:1
+    deploy:
+      replicas: 3
     build: ./car-api
     networks:
       - car-net
   service_4:
     container_name: rating-api
     image: output-rating:1
+    deploy:
+      replicas: 3
     build: ./rating-api
     networks:
       - car-net
