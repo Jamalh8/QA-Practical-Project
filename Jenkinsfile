@@ -19,14 +19,15 @@ pipeline {
                 scp nginx.conf jamal@swarm-manager:/home/jamal/
                 ssh jamal@swarm-manager sudo chmod +x docker-compose.yaml
                 ssh jamal@swarm-manager docker stack deploy --compose-file docker-compose.yaml f1-stack
-                sleep 30'''
+                sleep 10'''
             }
         }
         stage('Curl') {
             steps {
                 //
                 git branch: 'feature/jenkinsfile', url: 'https://github.com/Jamalh8/QA-Practical-Project.git'
-                sh 'curl docker'
+                sh '''curl swarm-manager
+                curl swarm-worker'''
             }
         }
     }
