@@ -1,8 +1,7 @@
 pipeline {
     agent any
     environment {
-        DOCKER_HUB_USR = credentials("DOCKER_HUB_CREDS")
-        DOCKER_HUB_USERNAME = credentials("DOCKER_HUB_PSW")
+        DOCKERHUB_CREDS = credentials('DOCKER_HUB_CREDS')
     }
     stages {
         stage('Test') {
