@@ -15,6 +15,24 @@ pipeline {
         //         ./test.sh'''
         //     }
         // }
+        stage('Build Images') {
+            steps {
+                //
+                git branch: 'feature/jenkinsfile', url: 'https://github.com/Jamalh8/QA-Practical-Project.git'
+                sh '''cd car-api/
+                docker build -t jamalh8/cars-generator:latest .
+                docker tag jamalh8/cars-generator:latest jamalh8/cars-generator:$BUILD_NUMBER
+                cd ../driver-api/
+                docker build -t jamalh8/cars-driver:latest .
+                docker tag jamalh8/cars-driver:latest jamalh8/cars-driver:$BUILD_NUMBER
+                cd ../front-end/
+                docker build -t jamalh8/cars-front:latest 
+                docker tag jamalh8/cars-front:latest jamalh8/cars-front:$BUILD_NUMBER
+                cd ../rating-api/
+                docker build -t jamalh8/cars-rating:latest
+                docker tag jamalh8/cars-rating:latest jamalh8/cars-rating:$BUILD_NUMBER'''  
+            }
+        }
         stage('Docker login') {
             steps {
                 //
