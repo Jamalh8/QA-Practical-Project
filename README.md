@@ -76,7 +76,7 @@ The information that will be provided are
 
 A visual design of the application front end can be seen below. 
 
-![alt text](https://github.com/Jamalh8/QA-Practical-Project/blob/dev/images_and_diagram/Application-design.png)
+<p><img src="https://github.com/Jamalh8/QA-Practical-Project/blob/feature/jenkinsfile/images_and_diagram/Application-design.png" alt="test" width="1000" height="450"></p>
 
 ### Project tracking
 ___
@@ -90,7 +90,7 @@ To meet the requirements I used Trello for my project tracking. I assigned tasks
 
 MoSCoW prioritisation was used and this dictated the tasks that were put into the sprint backlog. A visual of my Trello board can be down below to help understand this. 
 
-![alt text](https://github.com/Jamalh8/QA-Practical-Project/blob/dev/images_and_diagram/Trello-%20In%20progress.png)
+<p><img src="https://github.com/Jamalh8/QA-Practical-Project/blob/feature/jenkinsfile/images_and_diagram/Trello-%20In%20progress.png" alt="test" width="1000" height="450"></p>
 
 You can view my trello board directly by clicking [here](https://trello.com/b/r4G0troy/qa-practical-proj).
 
@@ -100,8 +100,49 @@ ___
 ### Unit Test
 ___
 
+>Unit tests were carried out against 4 of my services. Separate tests were created for the front-end, car-api, driver-api, and rating-api. To further automate testing, rather than going into each directory to run the tests, I ran these through the `test.sh` script. This script would loop through the specified directories, install the dependencies to run the tests, and run these tests. Once the tests are complete it would provide a html coverage report.
+
+The images below shows the results of the tests that were ran against the 4 services.
+
+`Front-end test`
+
+<p><img src="https://github.com/Jamalh8/QA-Practical-Project/blob/feature/jenkinsfile/images_and_diagram/test-front.png" alt="test" width="1000" height="450"></p>
+
+`Car-api test`
+
+<p><img src="https://github.com/Jamalh8/QA-Practical-Project/blob/feature/jenkinsfile/images_and_diagram/test-car.png" alt="test" width="1000" height="450"></p>
+
+`Driver-api test`
+
+<p><img src="https://github.com/Jamalh8/QA-Practical-Project/blob/feature/jenkinsfile/images_and_diagram/test-driver.png" alt="test" width="1000" height="450"></p>
+
+`Rating-api test`
+
+<p><img src="https://github.com/Jamalh8/QA-Practical-Project/blob/feature/jenkinsfile/images_and_diagram/test-rating.png" alt="test" width="1000" height="450"></p>
+
 ### Application Overview
 ___
+
+This section will very briefly give a quick overview of the application itself.
+
+***Home Page***
+
+The user will be greeted with the below home page. There will be no information displayed until the 'generate' button is clicked.
+
+<p><img src="https://github.com/Jamalh8/QA-Practical-Project/blob/feature/jenkinsfile/images_and_diagram/app-home.png" alt="test" width="1000" height="450"></p>
+
+***Generate***
+
+When the user clicks the 'generate' button, their randomly generated driver and car will be shown along with the ratings they recieved. The ratings is based on the driver and car that was generated.
+
+<p><img src="https://github.com/Jamalh8/QA-Practical-Project/blob/feature/jenkinsfile/images_and_diagram/app-generate-1.png" alt="test" width="1000" height="450"></p>
+
+***Second Generate***
+
+If the user clicks 'generate' again, another set of random driver and car is generated along with the ratings based on the newly generated driver and car.
+
+<p><img src="https://github.com/Jamalh8/QA-Practical-Project/blob/feature/jenkinsfile/images_and_diagram/app-generate-2.png" alt="test" width="1000" height="450"></p>
+
 
 ### CICD Pipeline
 ___
