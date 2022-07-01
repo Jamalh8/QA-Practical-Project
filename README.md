@@ -12,7 +12,7 @@
 
 [Unit Test](#Unit-Test)
 
-[The application](#The-application)
+[Application Overview](#Application-Overview)
 
 [CICD Pipeline](#CICD-Pipeline)
 
@@ -20,9 +20,9 @@
 
 [Challenges faced](#Challenges-faced)
 
-[Possible future changes to application](#Possible-future-changes-to-application)
+[Future Improvements](#Future-Improvements)
 
-[Conclusion and learning from this project](#Conclusion-and-learning-from-this-project)
+[Conclusion](#Conclusion)
 
 [Credits](#Credits)
 
@@ -83,13 +83,67 @@ ___
 
 **Requirements** 
 
->An Asana board (or equivalent Kanban board tech) with full expansion on tasks needed to complete the project.
+> An Asana board (or equivalent Kanban board tech) with full expansion on tasks needed to complete the project.
 ___
 
-To meet the requirements I used Trello for my project tracking. Trello incorporates a Kanban board. I assigned tasks that were required to meet the acceptance criteria of this project.
+To meet the requirements I used Trello for my project tracking. I assigned tasks that were required to meet the acceptance criteria of this project.
 
 MoSCoW prioritisation was used and this dictated the tasks that were put into the sprint backlog. A visual of my Trello board can be down below to help understand this. 
 
 ![alt text](https://github.com/Jamalh8/QA-Practical-Project/blob/dev/images_and_diagram/Trello-%20In%20progress.png)
 
 You can view my trello board directly by clicking [here](https://trello.com/b/r4G0troy/qa-practical-proj).
+
+### Risk assesment
+___
+
+### Unit Test
+___
+
+### Application Overview
+___
+
+### CICD Pipeline
+___
+
+`Project Tracking`
+> As mentioned previously a Trello Board used for my project tracking software. I used this to organision my workload and set myself goals to deliver the application by deadline.
+
+`Version Control`
+> Git was used as the version control for my project.
+
+`Version Control System`
+> GitHub was used as my version control system as this intergrates with my Version Control. 
+> Several feature branch were used to ensure that a stable version of the application is available for use.
+
+`Development Environment`
+> My development environment was an Ubuntu 20.04 LTS virtual machine (VM) hosted on Google Cloud Platform (GCP). I used SSH to connect my Visual Studio code to the GCP VM where I developed my application. 
+
+`CI/CD Server`
+> Jenkins was used as the CI/CD server as my automation environment. 
+> A GitHub webhook was intergrated with Jenkins. This allows Jenkins to automatically test, build, push docker images, and deploy my application anytime I make changes to it.
+> Separate tests were created for all services except Nginx service. In order to make ease of automation a script called `test.sh` was written so that each services are tested reccursively 
+
+`Containerisation`
+> Docker was used as my containerisation tool. There are many advantages to containeration my application. Using containers can create predictable environments that are isolated from other apps. We can have a cost-effective and a speedy deployment. I can also roll back to a previous of my application by using a different image. There are just a few advantages of containerising my application.
+
+`Ansible`
+> Ansible was used as my configuration management tool. 
+
+***Pipeline Diagram***
+
+To help understand the flow of my CI/CD and how automation was implemented a diagram is shown below to help you visualise and understand this. 
+
+### Challenges faced
+___
+
+### Future Improvements
+___
+
+### Conclusion
+___
+
+### Credits
+___
+
+I'd like to thank Leon, Adam, and Earl for their support in helping me deliver this project.
