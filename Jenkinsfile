@@ -1,7 +1,7 @@
 pipeline {
     agent any
     stages {
-        stage('Pytest') {         
+        stage('Test') {
             steps {
                 //
                 git branch: 'feature/jenkinsfile', url: 'https://github.com/Jamalh8/QA-Practical-Project.git'
@@ -10,13 +10,22 @@ pipeline {
                 sudo chmod +x test.sh
                 ./test.sh'''
             }
-            stage('Deploy') {         
+        }
+        stage('Deploy') {
             steps {
                 //
+                git branch: 'feature/jenkinsfile', url: 'https://github.com/Jamalh8/QA-Practical-Project.git'
                 sh '''scp  nginx_lb.conf jenkins@docker:/home/jenkins/
                 docker start nginx
                 scp  docker-compose.yaml jenkins@docker:/home/jenkins/
                 docker stack deploy --compose-file docker-compose.yaml f1-stack'''
+            }
+        }
+        stage('Curl') {
+            steps {
+                //
+                git branch: 'feature/jenkinsfile', url: 'https://github.com/Jamalh8/QA-Practical-Project.git'
+                sh 'curl docker'
             }
         }
     }
