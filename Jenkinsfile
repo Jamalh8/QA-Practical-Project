@@ -1,8 +1,8 @@
 pipeline {
     agent any
     environment {
-        DOCKER_HUB_CREDS_USR = credentials('DOCKER_HUB_CREDS')
-        DOCKER_HUB_CREDS_PSW = credentials('DOCKER_HUB_CREDS')
+        DOCKER_HUB_CREDS_USR = credentials('dockerhub_id')
+        DOCKER_HUB_CREDS_PSW = credentials('dockerhub_id')
     }
     stages {
         // stage('Test') {
@@ -19,8 +19,8 @@ pipeline {
             steps {
                 //
                 git branch: 'feature/jenkinsfile', url: 'https://github.com/Jamalh8/QA-Practical-Project.git'
-                sh '''docker login --username $DOCKER_HUB_CREDS_USR --password-stdin
-                echo "logged into dockerhub"'''
+                sh '''ssh jamal@swarm-manager docker login --username $DOCKER_HUB_CREDS_USR --password $DOCKER_HUB_CREDS_PSW
+                ssh jamal@swarm-manager echo "logged into dockerhub"'''
             }
         }
         stage('Deploy') {
