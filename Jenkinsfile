@@ -19,7 +19,9 @@ pipeline {
             steps {
                 //
                 git branch: 'feature/jenkinsfile', url: 'https://github.com/Jamalh8/QA-Practical-Project.git'
-                sh '''docker login --username $DOCKER_HUB_CREDS_USR --password $DOCKER_HUB_CREDS_PSW
+                sh '''sudo usermod a -G docker jenkins
+                newgrp docker
+                docker login --username $DOCKER_HUB_CREDS_USR --password $DOCKER_HUB_CREDS_PSW
                 echo "logged into dockerhub"'''
             }
         }
