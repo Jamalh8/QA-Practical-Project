@@ -5,16 +5,16 @@ pipeline {
         DOCKER_HUB_CREDS_PSW = credentials('DOCKER_HUB_CREDS')
     }
     stages {
-        stage('Test') {
-            steps {
-                //
-                git branch: 'feature/jenkinsfile', url: 'https://github.com/Jamalh8/QA-Practical-Project.git'
-                sh '''sudo apt install python3 python3-pip python3-venv -y
-                pip3 install pytest pytest-cov
-                sudo chmod +x test.sh
-                ./test.sh'''
-            }
-        }
+        // stage('Test') {
+        //     steps {
+        //         //
+        //         git branch: 'feature/jenkinsfile', url: 'https://github.com/Jamalh8/QA-Practical-Project.git'
+        //         sh '''sudo apt install python3 python3-pip python3-venv -y
+        //         pip3 install pytest pytest-cov
+        //         sudo chmod +x test.sh
+        //         ./test.sh'''
+        //     }
+        // }
         stage('Docker login') {
             steps {
                 //
