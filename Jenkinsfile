@@ -1,5 +1,9 @@
 pipeline {
     agent any
+    environment {
+        DOCKER_HUB_USR = credentials("DOCKER_HUB_CREDS")
+        DOCKER_HUB_USERNAME = credentials("DOCKER_HUB_PSW")
+    }
     stages {
         stage('Test') {
             steps {
@@ -11,6 +15,14 @@ pipeline {
                 ./test.sh'''
             }
         }
+        stage('Docker login') {
+            steps {
+                //
+                git branch: 'feature/jenkinsfile', url: 'https://github.com/Jamalh8/QA-Practical-Project.git'
+                sh '''docker login --username $DOCKER_HUB_CREDS_USR --password $DOCKER_HUB_CREDS_PSW
+                echo "logged into dockerhub"'''
+            }
+        }
         stage('Deploy') {
             steps {
                 //
@@ -18,7 +30,7 @@ pipeline {
                 sh '''scp docker-compose.yaml jamal@swarm-manager:/home/jamal/
                 scp nginx.conf jamal@swarm-manager:/home/jamal/
                 ssh jamal@swarm-manager docker stack deploy --compose-file docker-compose.yaml f1-stack
-                sleep 30'''
+                sleep 25'''
             }
         }
         stage('Curl') {
