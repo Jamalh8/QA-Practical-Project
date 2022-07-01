@@ -15,10 +15,10 @@ pipeline {
             steps {
                 //
                 git branch: 'feature/jenkinsfile', url: 'https://github.com/Jamalh8/QA-Practical-Project.git'
-                sh '''scp  nginx_lb.conf jenkins@docker:/home/jenkins/
-                docker start nginx
-                scp  docker-compose.yaml jenkins@docker:/home/jenkins/
-                docker stack deploy --compose-file docker-compose.yaml f1-stack'''
+                sh '''scp  docker-compose.yaml jamal@docker:/home/jenkins/
+                docker stack deploy --compose-file docker-compose.yaml f1-stack
+                scp  nginx_lb.conf jamal@docker:/home/jenkins/
+                docker start nginx'''
             }
         }
         stage('Curl') {
