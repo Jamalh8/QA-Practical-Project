@@ -18,7 +18,7 @@ pipeline {
                 sh '''scp docker-compose.yaml jamal@swarm-manager:/home/jamal/
                 scp nginx.conf jamal@swarm-manager:/home/jamal/
                 ssh jamal@swarm-manager docker stack deploy --compose-file docker-compose.yaml f1-stack
-                sleep 20'''
+                sleep 30'''
             }
         }
         stage('Curl') {
