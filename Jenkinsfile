@@ -10,19 +10,15 @@ pipeline {
                 sudo chmod +x test.sh
                 ./test.sh'''
             }
-    //     }
-    //     stage('Deploy') {
-    //         }            
-    //         steps {
-    //             //
-    //             git branch: 'dev', url: 'https://github.com/Jamalh8/QA-Practical-Project.git'
-    //             sh '''#!/bin/bash
-    //             if [ -f  /tmp/gpidfile ]
-    //               then kill $(cat /tmp/gpidfile)
-    //             fi
-    //             source venv/bin/activate
-    //             JENKINS_NODE_COOKIE=nokill gunicorn application:app -D -w 4 -b 0.0.0.0:5000 -p /tmp/gpidfile'''
-            // }
+        }
+        stage('Deploy') {
+            }            
+            steps {
+                //
+                sh '''scp  nginx_lb.conf jenkins@docker:/home/jenkins/
+                docker start nginx
+                scp  docker-compose.yaml jenkins@docker:/home/jenkins/
+                docker stack deploy --compose-file docker-compose.yaml f1-stack'''
+            }
         }
     }
-}
