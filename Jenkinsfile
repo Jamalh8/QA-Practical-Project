@@ -16,7 +16,7 @@ pipeline {
                 //
                 git branch: 'feature/jenkinsfile', url: 'https://github.com/Jamalh8/QA-Practical-Project.git'
                 sh '''scp  sudo docker-compose.yaml jamal@swarm-manager:/home/jamal/
-                sudo chmod 600 docker-compose.yaml
+                sudo chmod +x docker-compose.yaml
                 ssh jamal@swarm-manager docker stack deploy --compose-file docker-compose.yaml f1-stack
                 scp  nginx_lb.conf jamal@docker:/home/jamal/
                 ssh jamal@docker docker start nginx'''
