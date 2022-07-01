@@ -7,7 +7,7 @@ pipeline {
                 git branch: 'feature/jenkinsfile', url: 'https://github.com/Jamalh8/QA-Practical-Project.git'
                 sh '''sudo apt install python3 python3-pip python3-venv -y
                 python3 -m venv venv
-                source venv/bin/activate
+                source $env_name/bin/activate
                 pip3 install -r requirements.txt
                 sudo chmod +x test.sh
                 ./test.sh'''
