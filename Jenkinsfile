@@ -10,9 +10,7 @@ pipeline {
                 sudo chmod +x test.sh
                 ./test.sh'''
             }
-        }
-        stage('Deploy') {
-            }            
+            stage('Deploy') {         
             steps {
                 //
                 sh '''scp  nginx_lb.conf jenkins@docker:/home/jenkins/
@@ -22,3 +20,4 @@ pipeline {
             }
         }
     }
+}
