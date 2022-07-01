@@ -5,11 +5,10 @@ pipeline {
             steps {
                 //
                 git branch: 'feature/jenkinsfile', url: 'https://github.com/Jamalh8/QA-Practical-Project.git'
-                sh '''#!/bin/bash
+                sh '''sudo apt install python3 python3-pip python3-venv -y
                 python3 -m venv venv
                 source venv/bin/activate
                 pip3 install -r requirements.txt
-                pip3 install pytest pytest-cov
                 sudo chmod +x test.sh
                 ./test.sh'''
             }
