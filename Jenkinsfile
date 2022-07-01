@@ -19,7 +19,7 @@ pipeline {
                 scp nginx.conf jamal@swarm-manager:/home/jamal/
                 ssh jamal@swarm-manager sudo chmod +x docker-compose.yaml
                 ssh jamal@swarm-manager docker stack deploy --compose-file docker-compose.yaml f1-stack
-                scp  nginx_lb.conf jamal@docker:/home/jamal/
+                scp nginx_lb.conf jamal@docker:/home/jamal/
                 ssh jamal@docker docker run -d -p 80:80 --name nginx --mount type=bind,source=home/jamal/nginx_lb.conf,target=/etc/nginx/nginx.conf nginx '''
             }
         }
