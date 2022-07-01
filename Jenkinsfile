@@ -4,7 +4,7 @@ pipeline {
         stage('Pytest') {         
             steps {
                 //
-                git branch: 'dev', url: 'https://github.com/Jamalh8/QA-Practical-Project.git'
+                git branch: 'feature/jenkinsfile', url: 'https://github.com/Jamalh8/QA-Practical-Project.git'
                 sh '''#!/bin/bash
                 python3 -m venv venv
                 source venv/bin/activate
