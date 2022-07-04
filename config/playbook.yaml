@@ -3,13 +3,13 @@
   roles:
   - install-docker
 
-# - hosts: manager
-#   become: yes
-#   roles:
-#   - swarm-manager
+- hosts: manager
+  become: yes
+  roles:
+  - swarm-manager
 
-# - hosts: worker
-#   become: yes
-#   roles:
-#   - swarm-worker
+- hosts: worker
+  become: yes
+  roles:
+  - swarm-worker
 

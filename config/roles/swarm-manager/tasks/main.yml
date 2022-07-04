@@ -7,4 +7,5 @@
 
 - name: get token info
   docker_swarm_info:
-  register: token-info
+  register: swarm_info
+
