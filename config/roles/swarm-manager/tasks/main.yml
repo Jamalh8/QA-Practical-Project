@@ -1,2 +1,10 @@
 ---
 # tasks file for swarm-manager
+
+- name: Initialise swarm on manager
+  docker_swarm:
+    state: present
+
+- name: get token info
+  docker_swarm_info:
+  register: token-info
