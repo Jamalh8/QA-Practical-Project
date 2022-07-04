@@ -45,7 +45,9 @@ pipeline {
             steps {
                 //
                 git branch: 'feature/ansible', credentialsId: 'bd42fab1-6db5-49a3-bf99-7e52de6e500b', url: 'git@github.com:Jamalh8/QA-Practical-Project.git'
-                sh 'ssh jamal@nginx-lb \'docker run -d -p 80:80 --name nginx --mount type=bind,source=$(pwd)/nginx-lb.conf,target=/etc/nginx/nginx.conf nginx\''
+                sh '''ssh jamal@nginx-lb \'docker stop nginx\'
+                ssh jamal@nginx-lb \'docker rm nginx\'
+                ssh jamal@nginx-lb \'docker run -d -p 80:80 --name nginx --mount type=bind,source=$(pwd)/nginx.conf,target=/etc/nginx/nginx.conf nginx\''''
             }
         }
     }
