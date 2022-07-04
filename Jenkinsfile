@@ -1,8 +1,8 @@
 pipeline {
     agent any
     environment {
-        DOCKER_HUB_CREDS_USR = credentials('dockerhub_id')
-        DOCKER_HUB_CREDS_PSW = credentials('dockerhub_id')
+        DOCKER_HUB_CREDS_USR = credentials('DOCKER_HUB_USR')
+        DOCKER_HUB_CREDS_PSW = credentials('DOCKER_HUB_PSW')
     }
     stages {
         stage('Test') {
@@ -13,6 +13,14 @@ pipeline {
                 pip3 install pytest pytest-cov
                 sudo chmod +x test.sh
                 ./test.sh'''
+            }
+        }
+        stage('Ansible - Infastructure creation') {
+            steps {
+                //
+                git branch: 'feature/jenkinsfile', url: 'https://github.com/Jamalh8/QA-Practical-Project.git'
+                sh '''ssh jamal@gcp-dev-server cd /QA-Practical-Project/config && ansible-playbook -i inventory.yaml playbook.yaml
+                '''
             }
         }
         stage('Deploy') {
