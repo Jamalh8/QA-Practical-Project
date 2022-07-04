@@ -22,8 +22,8 @@ pipeline {
                 sh '''ssh jamal@gcp-dev-server '/home/jamal/.local/bin/ansible-playbook -i QA-Practical-Project/config/inventory.yaml QA-Practical-Project/config/playbook.yaml'
                 ssh jamal@gcp-dev-server docker login --username $DOCKER_HUB_CREDS_USR --password $DOCKER_HUB_CREDS_PSW
                 ssh jamal@gcp-dev-server echo "logged into dockerhub"
-                ssh jamal@gcp-dev-server /home/jamal/QA-Practical-Projectdocker-compose build
-                ssh jamal@gcp-dev-server /home/jamal/QA-Practical-Projectdocker-compose push'''
+                ssh jamal@gcp-dev-server /home/jamal/QA-Practical-Project/ docker-compose build
+                ssh jamal@gcp-dev-server /home/jamal/QA-Practical-Project/ docker-compose push'''
             }
         }
         stage('Deploy') {
