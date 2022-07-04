@@ -27,7 +27,7 @@ pipeline {
             steps {
                 //
                 git branch: 'feature/jenkinsfile', url: 'https://github.com/Jamalh8/QA-Practical-Project.git'
-                ssh '''jamal@swarm-manager docker login --username $DOCKER_HUB_CREDS_USR --password $DOCKER_HUB_CREDS_PSW
+                sh '''ssh jamal@swarm-manager docker login --username $DOCKER_HUB_CREDS_USR --password $DOCKER_HUB_CREDS_PSW
                 ssh jamal@swarm-manager echo "logged into dockerhub"'''
             }
         }
