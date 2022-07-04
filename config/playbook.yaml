@@ -13,3 +13,9 @@
   roles:
   - swarm-worker
 
+- hosts: nginx-lb
+  become: yes
+  roles:
+  - nginx-lb
+
+

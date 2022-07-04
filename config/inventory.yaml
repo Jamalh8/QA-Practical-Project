@@ -6,6 +6,9 @@ all:
     worker:
       hosts:
         swarm-worker:
+    nginx-lb:
+      hosts:
+        nginx-lb:
 
   vars:
     ansible_user: jamal

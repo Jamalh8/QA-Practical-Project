@@ -1,0 +1,13 @@
+---
+# tasks file for nginx-lb
+- name: copy nginx-lb file over
+  copy:
+    src: /home/jamal/QA-Practical-Project/nginx-lb.conf
+    dest: /home/jamal/
+
+- name: Copy nginx-lb file
+  ansible.builtin.copy:
+    src: /home/jamal/QA-Practical-Project/nginx-lb.conf
+    dest: /home/jamal/
+
+ 
