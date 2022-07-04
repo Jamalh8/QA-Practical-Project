@@ -19,7 +19,7 @@ pipeline {
             steps {
                 //
                 git branch: 'feature/ansible', credentialsId: 'bd42fab1-6db5-49a3-bf99-7e52de6e500b', url: 'git@github.com:Jamalh8/QA-Practical-Project.git'
-                sh '''ansible-playbook -i config/inventory.yaml config/playbook.yaml
+                sh '''ssh jamal@gcp-dev-server ansible-playbook -i config/inventory.yaml config/playbook.yaml
                 '''
             }
         }
