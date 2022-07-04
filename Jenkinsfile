@@ -19,7 +19,7 @@ pipeline {
             steps {
                 //
                 git branch: 'feature/jenkinsfile', url: 'https://github.com/Jamalh8/QA-Practical-Project.git'
-                sh '''ssh jamal@gcp-dev-server cd /QA-Practical-Project/config && ansible-playbook -i inventory.yaml playbook.yaml
+                sh '''ssh jamal@gcp-dev-server cd /QA-Practical-Project/config/ && ansible-playbook -i inventory.yaml playbook.yaml
                 '''
             }
         }
