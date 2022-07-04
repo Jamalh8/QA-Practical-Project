@@ -19,13 +19,16 @@ pipeline {
             steps {
                 //
                 git branch: 'feature/ansible', credentialsId: 'bd42fab1-6db5-49a3-bf99-7e52de6e500b', url: 'git@github.com:Jamalh8/QA-Practical-Project.git'
-                sh '''ssh jamal@gcp-dev-server '/home/jamal/.local/bin/ansible-playbook -i QA-Practical-Project/config/inventory.yaml QA-Practical-Project/config/playbook.yaml'
-                ssh jamal@gcp-dev-server docker login --username $DOCKER_HUB_CREDS_USR --password $DOCKER_HUB_CREDS_PSW
-                ssh jamal@gcp-dev-server echo "logged into dockerhub"
-                ssh jamal@gcp-dev-server cd QA-Practical-Project
-                ssh jamal@gcp-dev-server docker-compose build
-                ssh jamal@gcp-dev-server cd QA-Practical-Project
-                ssh jamal@gcp-dev-server docker-compose build'''
+                sh '''ssh jamal@gcp-dev-server '/home/jamal/.local/bin/ansible-playbook -i QA-Practical-Project/config/inventory.yaml QA-Practical-Project/config/playbook.yaml'''
+            }
+        }
+        stage('Docker login ') {
+            steps {
+                //
+                git branch: 'feature/ansible', credentialsId: 'bd42fab1-6db5-49a3-bf99-7e52de6e500b', url: 'git@github.com:Jamalh8/QA-Practical-Project.git'
+                sh '''docker-compose build
+                docker login --username $DOCKER_HUB_CREDS_USR --password $DOCKER_HUB_CREDS_PSW
+                docker-compose push'''
             }
         }
         stage('Deploy') {
