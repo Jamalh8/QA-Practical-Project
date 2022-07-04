@@ -14,6 +14,7 @@ pipeline {
                 sudo chmod +x test.sh
                 ./test.sh'''
             }
+        }
         stage('Log in dockerhub') {
             steps {
                 //
@@ -22,12 +23,11 @@ pipeline {
                 ssh jamal@swarm-manager echo "logged into dockerhub"'''
             }
         }
-        }
         stage('Ansible - Infastructure creation') {
             steps {
                 //
                 git branch: 'feature/ansible', credentialsId: 'bd42fab1-6db5-49a3-bf99-7e52de6e500b', url: 'git@github.com:Jamalh8/QA-Practical-Project.git'
-                sh '''ssh jamal@gcp-dev-server ansible-playbook -i inventory.yaml playbook.yaml
+                sh '''ssh jamal@gcp-dev-server cd /QA-Practical-Project/config/ && ansible-playbook -i inventory.yaml playbook.yaml
                 '''
             }
         }
