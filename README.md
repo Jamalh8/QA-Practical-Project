@@ -14,6 +14,8 @@
 
 [Application Overview](#Application-Overview)
 
+[Ansible Playbook] (#Ansible-Playbook)
+
 [CICD Pipeline](#CICD-Pipeline)
 
 [Known application issues](#Known-application-issues)
@@ -97,6 +99,12 @@ You can view my trello board directly by clicking [here](https://trello.com/b/r4
 ### Risk assesment
 ___
 
+A short risk assesment was carried out prior to the start of this project. I indentfied some possible risks that may occur along the way, the probability of this happening, the impact this will have, and how I can mitigate these.
+
+I used [this risk assesment matrix](https://www.researchgate.net/profile/Gulsum-Kaya/publication/323570642/figure/fig7/AS:625770716217345@1526206773610/A-standard-risk-matrix.png) to help me carry out the assesment. 
+
+<p><img src="https://github.com/Jamalh8/QA-Practical-Project/blob/feature/ansible/images_and_diagram/risk-assesment.png" alt="test" width="1250" height="275"></p>
+
 ### Unit Test
 ___
 
@@ -143,6 +151,59 @@ If the user clicks 'generate' again, another set of random driver and car is gen
 
 <p><img src="https://github.com/Jamalh8/QA-Practical-Project/blob/feature/jenkinsfile/images_and_diagram/app-generate-2.png" alt="test" width="1000" height="450"></p>
 
+### Ansible Playbook
+___
+
+Ansible was used to configure and install dependencies on the VM's that will deploy my application. This was done through the use of roles and an ansible-playbook. 
+
+Ansible was used for the following tasks:
+- Install docker onto `swarm-manager` `swarm-worker` and `nginx-lb` VM.
+- Initiate a swarm on `swarm-manager` and get `swarm-worker` to join the swarm.
+- Copy over my nginx config and nginx load balancer script to my `nginx-lb` VM.
+
+***First Playbook***
+
+On my first playbook run I installed docker onto my `swarm-manager` and `swarm-worker` VM. The below image will show the result of this.
+
+<p><img src="https://github.com/Jamalh8/QA-Practical-Project/blob/feature/ansible/images_and_diagram/ansible-playbook-install-docker.png" alt="test" width="1000" height="450"></p>
+
+I ran the playbook again to confirm that everything has been installed correctly. The below image will show the result of this.
+
+<p><img src="https://github.com/Jamalh8/QA-Practical-Project/blob/feature/ansible/images_and_diagram/ansible-playbook-install-docker-after.png" alt="test" width="1000" height="450"></p>
+
+***Extended Playbook***
+
+Once I successfully implemented my playbook to install docker onto both my `swarm-manager` and `swarm-worker` VM, I extended the playbook.
+
+The extension included:
+- Install docker onto `nginx-lb` VM.
+- Initialise a swarm on `swarm-manager` VM and have the `swarm-worker` join.
+
+The below image shows my first run of this extended playbook.
+
+<p><img src="https://github.com/Jamalh8/QA-Practical-Project/blob/feature/ansible/images_and_diagram/ansible-playbook-install-before.png" alt="test" width="1000" height="800"></p>
+
+Once again I ran the extended playbook again to ensure that all changes have been implemented.
+
+<p><img src="https://github.com/Jamalh8/QA-Practical-Project/blob/feature/ansible/images_and_diagram/ansible-playbook-install-after.png" alt="test" width="1000" height="800"></p>
+
+---
+
+To confirm that these changes have been implemented, I checked all 3 VM's for docker. The below images will show you how I started off with no docker installed and then those VM's having docker installed via the playbook.
+
+***swarm-manager VM***
+
+<p><img src="https://github.com/Jamalh8/QA-Practical-Project/blob/feature/ansible/images_and_diagram/swarm-manager-after-docker.png" alt="test" width="1000" height="450"></p>
+
+***swarm-worker VM***
+
+<p><img src="https://github.com/Jamalh8/QA-Practical-Project/blob/feature/ansible/images_and_diagram/swarm-worker-after-docker.png" alt="test" width="1000" height="450"></p>
+
+***nginx-lb VM***
+
+<p><img src="https://github.com/Jamalh8/QA-Practical-Project/blob/feature/ansible/images_and_diagram/nginx-lb-after-docker.png" alt="test" width="1000" height="450"></p>
+
+Upon success of my playbook I implemented Ansible with Jenkins to automate this process. This section will be better explained in the next section of CI/CD Pipeline.
 
 ### CICD Pipeline
 ___
@@ -169,14 +230,40 @@ ___
 > Docker was used as my containerisation tool. There are many advantages to containeration my application. Using containers can create predictable environments that are isolated from other apps. We can have a cost-effective and a speedy deployment. I can also roll back to a previous of my application by using a different image. There are just a few advantages of containerising my application.
 
 `Ansible`
-> Ansible was used as my configuration management tool. 
+> Ansible was used as my configuration management tool. As mentioned previously, I used this to configure and set up my deployment VM's.
 
 ***Pipeline Diagram***
 
-To help understand the flow of my CI/CD and how automation was implemented a diagram is shown below to help you visualise and understand this. 
+To help understand the flow of my CI/CD, and how automation was implemented, a diagram is shown below to explain this.
+
+
 
 ### Challenges faced
 ___
+
+There were several difficulties I face during this project. I'll be noting the 3 most difficult ones below.
+
+***1. Creating the ansible playbook.***
+
+This was a new tool that I've not used before and had to learn this from scratch. I was lucky enough to have been taught the basics of ansible by my tutors. This provided me with the platform to build upon and take the step into the unknown and try something new. I learnt to use ansible-doc and ansible-galaxy to find the relevant information required to create my playbook. 
+
+I had several playbook failures during this project. However, it was a great learning process as it helped understand the issues and research how I can correct these.
+
+***2. Creating a successful Jenkins Pipeline.***
+
+A Jenkins pipeline job was another section that I've not used before. Although I used Jenkins in the past I only used freestyle to do my automation.
+
+I had several build failures. The below image will show that I had 130 build failures before I finally got the automation to work as intended.
+
+<p><img src="https://github.com/Jamalh8/QA-Practical-Project/blob/feature/ansible/images_and_diagram/jenkins-builds.png" alt="test" width="500" height="450"></p>
+
+The most difficult part of the pipeline for me was to implement Ansible, build and push new images to dockerhub, and deploy to the swarm. I stayed resilient and kept trying. In the end I was rewarded with a working pipeline that automated my testing, infastructure and dependecies installation, building and pushing images to dockerhub, and deploying the application. 
+
+***3.Building of several Micro-services***
+
+I have used Flask to build a single web application in the past but this was my first time dipping my toes into micro-services that communicate with each other. Once again, I was lucky to have tutors that gave me the basic knowledge to create my own micro-services application. 
+
+Most noteably, the difficult part of this section was to obtain the random information from service 2 and 3 and use service 4 to provide a logical output. 
 
 ### Future Improvements
 ___
