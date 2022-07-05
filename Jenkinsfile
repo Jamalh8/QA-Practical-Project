@@ -45,8 +45,16 @@ pipeline {
             steps {
                 //
                 git branch: 'feature/ansible', credentialsId: 'bd42fab1-6db5-49a3-bf99-7e52de6e500b', url: 'git@github.com:Jamalh8/QA-Practical-Project.git'
-                sh '''./nginx-script2.sh
-                '''
+                sh '''#!/bin/bash
+                containerstate=$(docker inspect nginx --format=\'{{.State.Status}}\' 2> /dev/null)
+                if [ ! -z $containerstate ]
+                then
+                        if [ $containerstate = "running" ]
+                        then
+                        docker stop nginx && docker rm nginx
+                        fi
+                fi
+                    docker run -d -p 80:80 --mount type=bind,source=$(pwd)/nginx-lb.conf,target=/etc/nginx/nginx.conf --name nginx nginx'''
             }
         }
     }
