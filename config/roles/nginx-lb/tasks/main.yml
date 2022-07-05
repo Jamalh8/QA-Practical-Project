@@ -5,9 +5,9 @@
     src: /home/jamal/QA-Practical-Project/nginx-lb.conf
     dest: /home/jamal/
 
-- name: Copy nginx-lb file
-  ansible.builtin.copy:
-    src: /home/jamal/QA-Practical-Project/nginx-lb.conf
+- name: Copy nginx-script-lb file
+  copy:
+    src: /home/jamal/QA-Practical-Project/nginx-lb-script.sh
     dest: /home/jamal/
 
  
