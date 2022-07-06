@@ -113,9 +113,9 @@ ___
 
 A short risk assesment was carried out prior to the start of this project. I indentfied some possible risks that may occur along the way, the probability of this happening, the impact this will have, and how I can mitigate these.
 
-I used [this risk assesment matrix](https://www.researchgate.net/profile/Gulsum-Kaya/publication/323570642/figure/fig7/AS:625770716217345@1526206773610/A-standard-risk-matrix.png) to help me carry out the assesment. 
+I used [this risk assesment matrix](https://www.researchgate.net/profile/Gulsum-Kaya/publication/323570642/figure/fig7/AS:625770716217345@1526206773610/A-standard-risk-matrix.png) to help me carry out the assesment. If you're unable to read the below image clear, please click on the image. You'll be able to see a much clearer version.
 
-<p><img src="https://github.com/Jamalh8/QA-Practical-Project/blob/feature/ansible/images_and_diagram/risk-assesment.png" alt="test" width="1250" height="275"></p>
+<p><img src="https://github.com/Jamalh8/QA-Practical-Project/blob/feature/ansible/images_and_diagram/risk-assesment.png" alt="test" width="1500" height="350"></p>
 
 ### Unit Test
 ___
@@ -292,6 +292,14 @@ A GitHub webhook was intergrated with Jenkins. This meant that everytime I made 
 - Run ansible playbook to install my dependecies onto the deployment VMs and initialise a swarm.
 - Build and Push images to my dockerhub repository.
 - Deploy my application to the swarm that was initialised using the Ansible playbook.
+
+***Jenkins Deployment Logs***
+
+I've done 2 builds and recorded logs for the successful deployment.
+
+The first build was made completely fresh where ansible was used to install my dependecies on the 3 VM's used for deployment. You can view this log by clicking [here](https://github.com/Jamalh8/QA-Practical-Project/blob/feature/ansible/images_and_diagram/Jenkins-logs-fresh-build.txt)
+
+I ran this pipeline again to show that the dependecies were infact successful and did a re-deployment of my application. This log can be viewed by clicking [here](https://github.com/Jamalh8/QA-Practical-Project/blob/feature/ansible/images_and_diagram/Jenkins-logs-second-build.txt)
 
 ### Challenges faced
 ___
