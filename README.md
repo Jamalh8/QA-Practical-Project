@@ -113,7 +113,9 @@ ___
 
 A short risk assesment was carried out prior to the start of this project. I indentfied some possible risks that may occur along the way, the probability of this happening, the impact this will have, and how I can mitigate these.
 
-I used [this risk assesment matrix](https://www.researchgate.net/profile/Gulsum-Kaya/publication/323570642/figure/fig7/AS:625770716217345@1526206773610/A-standard-risk-matrix.png) to help me carry out the assesment. If you're unable to read the below image clear, please click on the image. You'll be able to see a much clearer version.
+I used [this risk assesment matrix](https://www.researchgate.net/profile/Gulsum-Kaya/publication/323570642/figure/fig7/AS:625770716217345@1526206773610/A-standard-risk-matrix.png) to help me carry out the assesment. 
+
+If you're unable to read the below image clear, please click on the image. You'll be able to see a much clearer version.
 
 <p><img src="https://github.com/Jamalh8/QA-Practical-Project/blob/feature/ansible/images_and_diagram/risk-assesment.png" alt="test" width="1500" height="350"></p>
 
