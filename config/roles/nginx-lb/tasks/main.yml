@@ -9,5 +9,8 @@
   copy:
     src: /home/jamal/QA-Practical-Project/nginx-lb-script.sh
     dest: /home/jamal/
+    owner: jamal
+    group: docker
+    mode: u+rwx
 
  
