@@ -1,0 +1,935 @@
+Started by user Jamal
+Obtained Jenkinsfile from git git@github.com:Jamalh8/QA-Practical-Project.git
+[Pipeline] Start of Pipeline
+[Pipeline] node
+Running on Jenkins in /home/jenkins/.jenkins/workspace/f1-app
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Declarative: Checkout SCM)
+[Pipeline] checkout
+The recommended git tool is: git
+using credential bd42fab1-6db5-49a3-bf99-7e52de6e500b
+ > git rev-parse --resolve-git-dir /home/jenkins/.jenkins/workspace/f1-app/.git # timeout=10
+Fetching changes from the remote Git repository
+ > git config remote.origin.url git@github.com:Jamalh8/QA-Practical-Project.git # timeout=10
+Fetching upstream changes from git@github.com:Jamalh8/QA-Practical-Project.git
+ > git --version # timeout=10
+ > git --version # 'git version 2.25.1'
+using GIT_SSH to set credentials 
+ > git fetch --tags --force --progress -- git@github.com:Jamalh8/QA-Practical-Project.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git rev-parse refs/remotes/origin/feature/ansible^{commit} # timeout=10
+Checking out Revision a2cf62a0c4e209c5e48088d881d3bc605148b042 (refs/remotes/origin/feature/ansible)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f a2cf62a0c4e209c5e48088d881d3bc605148b042 # timeout=10
+Commit message: "completed 1st draft - will need to proof read"
+ > git rev-list --no-walk a2cf62a0c4e209c5e48088d881d3bc605148b042 # timeout=10
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] withCredentials
+Masking supported pattern matches of $DOCKER_HUB_CREDS_USR or $DOCKER_HUB_CREDS_PSW
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Test)
+[Pipeline] git
+The recommended git tool is: git
+using credential bd42fab1-6db5-49a3-bf99-7e52de6e500b
+ > git rev-parse --resolve-git-dir /home/jenkins/.jenkins/workspace/f1-app/.git # timeout=10
+Fetching changes from the remote Git repository
+ > git config remote.origin.url git@github.com:Jamalh8/QA-Practical-Project.git # timeout=10
+Fetching upstream changes from git@github.com:Jamalh8/QA-Practical-Project.git
+ > git --version # timeout=10
+ > git --version # 'git version 2.25.1'
+using GIT_SSH to set credentials 
+ > git fetch --tags --force --progress -- git@github.com:Jamalh8/QA-Practical-Project.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git rev-parse refs/remotes/origin/feature/ansible^{commit} # timeout=10
+Checking out Revision a2cf62a0c4e209c5e48088d881d3bc605148b042 (refs/remotes/origin/feature/ansible)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f a2cf62a0c4e209c5e48088d881d3bc605148b042 # timeout=10
+ > git branch -a -v --no-abbrev # timeout=10
+ > git branch -D feature/ansible # timeout=10
+ > git checkout -b feature/ansible a2cf62a0c4e209c5e48088d881d3bc605148b042 # timeout=10
+Commit message: "completed 1st draft - will need to proof read"
+[Pipeline] sh
++ sudo chmod +x test.sh
++ ./test.sh
+sudo: a terminal is required to read the password; either use the -S option to read from standard input or configure an askpass helper
+sudo: a terminal is required to read the password; either use the -S option to read from standard input or configure an askpass helper
+Requirement already satisfied: Flask in ./venv/lib/python3.8/site-packages (from -r test_requirements.txt (line 1)) (2.1.2)
+Requirement already satisfied: flask-testing in ./venv/lib/python3.8/site-packages (from -r test_requirements.txt (line 2)) (0.8.1)
+Requirement already satisfied: requests_mock in ./venv/lib/python3.8/site-packages (from -r test_requirements.txt (line 3)) (1.9.3)
+Requirement already satisfied: pytest in ./venv/lib/python3.8/site-packages (from -r test_requirements.txt (line 4)) (7.1.2)
+Requirement already satisfied: pytest-cov in ./venv/lib/python3.8/site-packages (from -r test_requirements.txt (line 5)) (3.0.0)
+Requirement already satisfied: click>=8.0 in ./venv/lib/python3.8/site-packages (from Flask->-r test_requirements.txt (line 1)) (8.1.3)
+Requirement already satisfied: Werkzeug>=2.0 in ./venv/lib/python3.8/site-packages (from Flask->-r test_requirements.txt (line 1)) (2.1.2)
+Requirement already satisfied: importlib-metadata>=3.6.0; python_version < "3.10" in ./venv/lib/python3.8/site-packages (from Flask->-r test_requirements.txt (line 1)) (4.12.0)
+Requirement already satisfied: Jinja2>=3.0 in ./venv/lib/python3.8/site-packages (from Flask->-r test_requirements.txt (line 1)) (3.1.2)
+Requirement already satisfied: itsdangerous>=2.0 in ./venv/lib/python3.8/site-packages (from Flask->-r test_requirements.txt (line 1)) (2.1.2)
+Requirement already satisfied: six in ./venv/lib/python3.8/site-packages (from requests_mock->-r test_requirements.txt (line 3)) (1.16.0)
+Requirement already satisfied: requests<3,>=2.3 in ./venv/lib/python3.8/site-packages (from requests_mock->-r test_requirements.txt (line 3)) (2.28.1)
+Requirement already satisfied: py>=1.8.2 in ./venv/lib/python3.8/site-packages (from pytest->-r test_requirements.txt (line 4)) (1.11.0)
+Requirement already satisfied: packaging in ./venv/lib/python3.8/site-packages (from pytest->-r test_requirements.txt (line 4)) (21.3)
+Requirement already satisfied: iniconfig in ./venv/lib/python3.8/site-packages (from pytest->-r test_requirements.txt (line 4)) (1.1.1)
+Requirement already satisfied: attrs>=19.2.0 in ./venv/lib/python3.8/site-packages (from pytest->-r test_requirements.txt (line 4)) (21.4.0)
+Requirement already satisfied: tomli>=1.0.0 in ./venv/lib/python3.8/site-packages (from pytest->-r test_requirements.txt (line 4)) (2.0.1)
+Requirement already satisfied: pluggy<2.0,>=0.12 in ./venv/lib/python3.8/site-packages (from pytest->-r test_requirements.txt (line 4)) (1.0.0)
+Requirement already satisfied: coverage[toml]>=5.2.1 in ./venv/lib/python3.8/site-packages (from pytest-cov->-r test_requirements.txt (line 5)) (6.4.1)
+Requirement already satisfied: zipp>=0.5 in ./venv/lib/python3.8/site-packages (from importlib-metadata>=3.6.0; python_version < "3.10"->Flask->-r test_requirements.txt (line 1)) (3.8.0)
+Requirement already satisfied: MarkupSafe>=2.0 in ./venv/lib/python3.8/site-packages (from Jinja2>=3.0->Flask->-r test_requirements.txt (line 1)) (2.1.1)
+Requirement already satisfied: certifi>=2017.4.17 in ./venv/lib/python3.8/site-packages (from requests<3,>=2.3->requests_mock->-r test_requirements.txt (line 3)) (2022.6.15)
+Requirement already satisfied: charset-normalizer<3,>=2 in ./venv/lib/python3.8/site-packages (from requests<3,>=2.3->requests_mock->-r test_requirements.txt (line 3)) (2.1.0)
+Requirement already satisfied: idna<4,>=2.5 in ./venv/lib/python3.8/site-packages (from requests<3,>=2.3->requests_mock->-r test_requirements.txt (line 3)) (3.3)
+Requirement already satisfied: urllib3<1.27,>=1.21.1 in ./venv/lib/python3.8/site-packages (from requests<3,>=2.3->requests_mock->-r test_requirements.txt (line 3)) (1.26.9)
+Requirement already satisfied: pyparsing!=3.0.5,>=2.0.2 in ./venv/lib/python3.8/site-packages (from packaging->pytest->-r test_requirements.txt (line 4)) (3.0.9)
+============================= test session starts ==============================
+platform linux -- Python 3.8.10, pytest-7.1.2, pluggy-1.0.0
+rootdir: /home/jenkins/.jenkins/workspace/f1-app/front-end
+plugins: cov-3.0.0, requests-mock-1.9.3
+collected 7 items
+
+tests/test_front.py .......                                              [100%]
+
+---------- coverage: platform linux, python 3.8.10-final-0 -----------
+Coverage HTML written to dir htmlcov
+
+
+============================== 7 passed in 0.45s ===============================
+sudo: a terminal is required to read the password; either use the -S option to read from standard input or configure an askpass helper
+sudo: a terminal is required to read the password; either use the -S option to read from standard input or configure an askpass helper
+Requirement already satisfied: Flask in ./venv/lib/python3.8/site-packages (from -r test_requirements.txt (line 1)) (2.1.2)
+Requirement already satisfied: flask-testing in ./venv/lib/python3.8/site-packages (from -r test_requirements.txt (line 2)) (0.8.1)
+Requirement already satisfied: pytest in ./venv/lib/python3.8/site-packages (from -r test_requirements.txt (line 3)) (7.1.2)
+Requirement already satisfied: pytest-cov in ./venv/lib/python3.8/site-packages (from -r test_requirements.txt (line 4)) (3.0.0)
+Requirement already satisfied: itsdangerous>=2.0 in ./venv/lib/python3.8/site-packages (from Flask->-r test_requirements.txt (line 1)) (2.1.2)
+Requirement already satisfied: click>=8.0 in ./venv/lib/python3.8/site-packages (from Flask->-r test_requirements.txt (line 1)) (8.1.3)
+Requirement already satisfied: Werkzeug>=2.0 in ./venv/lib/python3.8/site-packages (from Flask->-r test_requirements.txt (line 1)) (2.1.2)
+Requirement already satisfied: importlib-metadata>=3.6.0; python_version < "3.10" in ./venv/lib/python3.8/site-packages (from Flask->-r test_requirements.txt (line 1)) (4.12.0)
+Requirement already satisfied: Jinja2>=3.0 in ./venv/lib/python3.8/site-packages (from Flask->-r test_requirements.txt (line 1)) (3.1.2)
+Requirement already satisfied: attrs>=19.2.0 in ./venv/lib/python3.8/site-packages (from pytest->-r test_requirements.txt (line 3)) (21.4.0)
+Requirement already satisfied: packaging in ./venv/lib/python3.8/site-packages (from pytest->-r test_requirements.txt (line 3)) (21.3)
+Requirement already satisfied: tomli>=1.0.0 in ./venv/lib/python3.8/site-packages (from pytest->-r test_requirements.txt (line 3)) (2.0.1)
+Requirement already satisfied: py>=1.8.2 in ./venv/lib/python3.8/site-packages (from pytest->-r test_requirements.txt (line 3)) (1.11.0)
+Requirement already satisfied: iniconfig in ./venv/lib/python3.8/site-packages (from pytest->-r test_requirements.txt (line 3)) (1.1.1)
+Requirement already satisfied: pluggy<2.0,>=0.12 in ./venv/lib/python3.8/site-packages (from pytest->-r test_requirements.txt (line 3)) (1.0.0)
+Requirement already satisfied: coverage[toml]>=5.2.1 in ./venv/lib/python3.8/site-packages (from pytest-cov->-r test_requirements.txt (line 4)) (6.4.1)
+Requirement already satisfied: zipp>=0.5 in ./venv/lib/python3.8/site-packages (from importlib-metadata>=3.6.0; python_version < "3.10"->Flask->-r test_requirements.txt (line 1)) (3.8.0)
+Requirement already satisfied: MarkupSafe>=2.0 in ./venv/lib/python3.8/site-packages (from Jinja2>=3.0->Flask->-r test_requirements.txt (line 1)) (2.1.1)
+Requirement already satisfied: pyparsing!=3.0.5,>=2.0.2 in ./venv/lib/python3.8/site-packages (from packaging->pytest->-r test_requirements.txt (line 3)) (3.0.9)
+============================= test session starts ==============================
+platform linux -- Python 3.8.10, pytest-7.1.2, pluggy-1.0.0
+rootdir: /home/jenkins/.jenkins/workspace/f1-app/driver-api
+plugins: cov-3.0.0
+collected 5 items
+
+tests/test_driver.py .....                                               [100%]
+
+---------- coverage: platform linux, python 3.8.10-final-0 -----------
+Coverage HTML written to dir htmlcov
+
+
+============================== 5 passed in 0.38s ===============================
+sudo: a terminal is required to read the password; either use the -S option to read from standard input or configure an askpass helper
+sudo: a terminal is required to read the password; either use the -S option to read from standard input or configure an askpass helper
+Requirement already satisfied: Flask in ./venv/lib/python3.8/site-packages (from -r test_requirements.txt (line 1)) (2.1.2)
+Requirement already satisfied: flask-testing in ./venv/lib/python3.8/site-packages (from -r test_requirements.txt (line 2)) (0.8.1)
+Requirement already satisfied: pytest in ./venv/lib/python3.8/site-packages (from -r test_requirements.txt (line 3)) (7.1.2)
+Requirement already satisfied: pytest-cov in ./venv/lib/python3.8/site-packages (from -r test_requirements.txt (line 4)) (3.0.0)
+Requirement already satisfied: Werkzeug>=2.0 in ./venv/lib/python3.8/site-packages (from Flask->-r test_requirements.txt (line 1)) (2.1.2)
+Requirement already satisfied: Jinja2>=3.0 in ./venv/lib/python3.8/site-packages (from Flask->-r test_requirements.txt (line 1)) (3.1.2)
+Requirement already satisfied: click>=8.0 in ./venv/lib/python3.8/site-packages (from Flask->-r test_requirements.txt (line 1)) (8.1.3)
+Requirement already satisfied: itsdangerous>=2.0 in ./venv/lib/python3.8/site-packages (from Flask->-r test_requirements.txt (line 1)) (2.1.2)
+Requirement already satisfied: importlib-metadata>=3.6.0; python_version < "3.10" in ./venv/lib/python3.8/site-packages (from Flask->-r test_requirements.txt (line 1)) (4.12.0)
+Requirement already satisfied: py>=1.8.2 in ./venv/lib/python3.8/site-packages (from pytest->-r test_requirements.txt (line 3)) (1.11.0)
+Requirement already satisfied: attrs>=19.2.0 in ./venv/lib/python3.8/site-packages (from pytest->-r test_requirements.txt (line 3)) (21.4.0)
+Requirement already satisfied: tomli>=1.0.0 in ./venv/lib/python3.8/site-packages (from pytest->-r test_requirements.txt (line 3)) (2.0.1)
+Requirement already satisfied: iniconfig in ./venv/lib/python3.8/site-packages (from pytest->-r test_requirements.txt (line 3)) (1.1.1)
+Requirement already satisfied: pluggy<2.0,>=0.12 in ./venv/lib/python3.8/site-packages (from pytest->-r test_requirements.txt (line 3)) (1.0.0)
+Requirement already satisfied: packaging in ./venv/lib/python3.8/site-packages (from pytest->-r test_requirements.txt (line 3)) (21.3)
+Requirement already satisfied: coverage[toml]>=5.2.1 in ./venv/lib/python3.8/site-packages (from pytest-cov->-r test_requirements.txt (line 4)) (6.4.1)
+Requirement already satisfied: MarkupSafe>=2.0 in ./venv/lib/python3.8/site-packages (from Jinja2>=3.0->Flask->-r test_requirements.txt (line 1)) (2.1.1)
+Requirement already satisfied: zipp>=0.5 in ./venv/lib/python3.8/site-packages (from importlib-metadata>=3.6.0; python_version < "3.10"->Flask->-r test_requirements.txt (line 1)) (3.8.0)
+Requirement already satisfied: pyparsing!=3.0.5,>=2.0.2 in ./venv/lib/python3.8/site-packages (from packaging->pytest->-r test_requirements.txt (line 3)) (3.0.9)
+============================= test session starts ==============================
+platform linux -- Python 3.8.10, pytest-7.1.2, pluggy-1.0.0
+rootdir: /home/jenkins/.jenkins/workspace/f1-app/car-api
+plugins: cov-3.0.0
+collected 5 items
+
+tests/test_car.py .....                                                  [100%]
+
+---------- coverage: platform linux, python 3.8.10-final-0 -----------
+Coverage HTML written to dir htmlcov
+
+
+============================== 5 passed in 0.44s ===============================
+sudo: a terminal is required to read the password; either use the -S option to read from standard input or configure an askpass helper
+sudo: a terminal is required to read the password; either use the -S option to read from standard input or configure an askpass helper
+Requirement already satisfied: Flask in ./venv/lib/python3.8/site-packages (from -r test_requirements.txt (line 1)) (2.1.2)
+Requirement already satisfied: flask-testing in ./venv/lib/python3.8/site-packages (from -r test_requirements.txt (line 2)) (0.8.1)
+Requirement already satisfied: pytest in ./venv/lib/python3.8/site-packages (from -r test_requirements.txt (line 3)) (7.1.2)
+Requirement already satisfied: pytest-cov in ./venv/lib/python3.8/site-packages (from -r test_requirements.txt (line 4)) (3.0.0)
+Requirement already satisfied: requests_mock in ./venv/lib/python3.8/site-packages (from -r test_requirements.txt (line 5)) (1.9.3)
+Requirement already satisfied: itsdangerous>=2.0 in ./venv/lib/python3.8/site-packages (from Flask->-r test_requirements.txt (line 1)) (2.1.2)
+Requirement already satisfied: click>=8.0 in ./venv/lib/python3.8/site-packages (from Flask->-r test_requirements.txt (line 1)) (8.1.3)
+Requirement already satisfied: importlib-metadata>=3.6.0; python_version < "3.10" in ./venv/lib/python3.8/site-packages (from Flask->-r test_requirements.txt (line 1)) (4.12.0)
+Requirement already satisfied: Werkzeug>=2.0 in ./venv/lib/python3.8/site-packages (from Flask->-r test_requirements.txt (line 1)) (2.1.2)
+Requirement already satisfied: Jinja2>=3.0 in ./venv/lib/python3.8/site-packages (from Flask->-r test_requirements.txt (line 1)) (3.1.2)
+Requirement already satisfied: py>=1.8.2 in ./venv/lib/python3.8/site-packages (from pytest->-r test_requirements.txt (line 3)) (1.11.0)
+Requirement already satisfied: iniconfig in ./venv/lib/python3.8/site-packages (from pytest->-r test_requirements.txt (line 3)) (1.1.1)
+Requirement already satisfied: packaging in ./venv/lib/python3.8/site-packages (from pytest->-r test_requirements.txt (line 3)) (21.3)
+Requirement already satisfied: tomli>=1.0.0 in ./venv/lib/python3.8/site-packages (from pytest->-r test_requirements.txt (line 3)) (2.0.1)
+Requirement already satisfied: pluggy<2.0,>=0.12 in ./venv/lib/python3.8/site-packages (from pytest->-r test_requirements.txt (line 3)) (1.0.0)
+Requirement already satisfied: attrs>=19.2.0 in ./venv/lib/python3.8/site-packages (from pytest->-r test_requirements.txt (line 3)) (21.4.0)
+Requirement already satisfied: coverage[toml]>=5.2.1 in ./venv/lib/python3.8/site-packages (from pytest-cov->-r test_requirements.txt (line 4)) (6.4.1)
+Requirement already satisfied: requests<3,>=2.3 in ./venv/lib/python3.8/site-packages (from requests_mock->-r test_requirements.txt (line 5)) (2.28.1)
+Requirement already satisfied: six in ./venv/lib/python3.8/site-packages (from requests_mock->-r test_requirements.txt (line 5)) (1.16.0)
+Requirement already satisfied: zipp>=0.5 in ./venv/lib/python3.8/site-packages (from importlib-metadata>=3.6.0; python_version < "3.10"->Flask->-r test_requirements.txt (line 1)) (3.8.0)
+Requirement already satisfied: MarkupSafe>=2.0 in ./venv/lib/python3.8/site-packages (from Jinja2>=3.0->Flask->-r test_requirements.txt (line 1)) (2.1.1)
+Requirement already satisfied: pyparsing!=3.0.5,>=2.0.2 in ./venv/lib/python3.8/site-packages (from packaging->pytest->-r test_requirements.txt (line 3)) (3.0.9)
+Requirement already satisfied: idna<4,>=2.5 in ./venv/lib/python3.8/site-packages (from requests<3,>=2.3->requests_mock->-r test_requirements.txt (line 5)) (3.3)
+Requirement already satisfied: certifi>=2017.4.17 in ./venv/lib/python3.8/site-packages (from requests<3,>=2.3->requests_mock->-r test_requirements.txt (line 5)) (2022.6.15)
+Requirement already satisfied: urllib3<1.27,>=1.21.1 in ./venv/lib/python3.8/site-packages (from requests<3,>=2.3->requests_mock->-r test_requirements.txt (line 5)) (1.26.9)
+Requirement already satisfied: charset-normalizer<3,>=2 in ./venv/lib/python3.8/site-packages (from requests<3,>=2.3->requests_mock->-r test_requirements.txt (line 5)) (2.1.0)
+============================= test session starts ==============================
+platform linux -- Python 3.8.10, pytest-7.1.2, pluggy-1.0.0
+rootdir: /home/jenkins/.jenkins/workspace/f1-app/rating-api
+plugins: cov-3.0.0, requests-mock-1.9.3
+collected 20 items
+
+tests/test_rating.py ....................                                [100%]
+
+---------- coverage: platform linux, python 3.8.10-final-0 -----------
+Coverage HTML written to dir htmlcov
+
+
+============================== 20 passed in 0.40s ==============================
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Ansible - Infastructure creation)
+[Pipeline] git
+The recommended git tool is: git
+using credential bd42fab1-6db5-49a3-bf99-7e52de6e500b
+ > git rev-parse --resolve-git-dir /home/jenkins/.jenkins/workspace/f1-app/.git # timeout=10
+Fetching changes from the remote Git repository
+ > git config remote.origin.url git@github.com:Jamalh8/QA-Practical-Project.git # timeout=10
+Fetching upstream changes from git@github.com:Jamalh8/QA-Practical-Project.git
+ > git --version # timeout=10
+ > git --version # 'git version 2.25.1'
+using GIT_SSH to set credentials 
+ > git fetch --tags --force --progress -- git@github.com:Jamalh8/QA-Practical-Project.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git rev-parse refs/remotes/origin/feature/ansible^{commit} # timeout=10
+Checking out Revision a2cf62a0c4e209c5e48088d881d3bc605148b042 (refs/remotes/origin/feature/ansible)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f a2cf62a0c4e209c5e48088d881d3bc605148b042 # timeout=10
+ > git branch -a -v --no-abbrev # timeout=10
+ > git branch -D feature/ansible # timeout=10
+ > git checkout -b feature/ansible a2cf62a0c4e209c5e48088d881d3bc605148b042 # timeout=10
+Commit message: "completed 1st draft - will need to proof read"
+[Pipeline] sh
++ ssh jamal@gcp-dev-server /home/jamal/.local/bin/ansible-playbook -i QA-Practical-Project/config/inventory.yaml QA-Practical-Project/config/playbook.yaml
+[DEPRECATION WARNING]: Ansible will require Python 3.8 or newer on the 
+controller starting with Ansible 2.12. Current version: 3.6.9 (default, Mar 15 
+2022, 13:55:28) [GCC 8.4.0]. This feature will be removed from ansible-core in 
+version 2.12. Deprecation warnings can be disabled by setting 
+deprecation_warnings=False in ansible.cfg.
+[WARNING]: Invalid characters were found in group names but not replaced, use
+-vvvv to see details
+[WARNING]: Found both group and host with same name: nginx-lb
+
+PLAY [all] *********************************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [swarm-worker]
+ok: [nginx-lb]
+ok: [swarm-manager]
+
+TASK [install-docker : Install required system packages] ***********************
+ok: [nginx-lb]
+ok: [swarm-manager]
+ok: [swarm-worker]
+
+TASK [install-docker : Add Docker GPG apt Key] *********************************
+ok: [swarm-manager]
+ok: [nginx-lb]
+ok: [swarm-worker]
+
+TASK [install-docker : Add Docker Repo] ****************************************
+ok: [nginx-lb]
+ok: [swarm-worker]
+ok: [swarm-manager]
+
+TASK [install-docker : Install docker engine] **********************************
+ok: [swarm-worker]
+ok: [nginx-lb]
+ok: [swarm-manager]
+
+TASK [install-docker : check docker has started] *******************************
+ok: [swarm-manager]
+ok: [swarm-worker]
+ok: [nginx-lb]
+
+TASK [install-docker : Add myself to docker group] *****************************
+ok: [nginx-lb]
+ok: [swarm-worker]
+ok: [swarm-manager]
+
+TASK [install-docker : Install Docker Module for Python] ***********************
+ok: [nginx-lb]
+ok: [swarm-worker]
+ok: [swarm-manager]
+
+PLAY [manager] *****************************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [swarm-manager]
+
+TASK [swarm-manager : Initialise swarm on manager] *****************************
+ok: [swarm-manager]
+
+TASK [swarm-manager : get token info] ******************************************
+ok: [swarm-manager]
+
+PLAY [worker] ******************************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [swarm-worker]
+
+TASK [swarm-worker : Add worker to swarm] **************************************
+ok: [swarm-worker]
+
+PLAY [nginx-lb] ****************************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [nginx-lb]
+
+TASK [nginx-lb : copy nginx-lb file over] **************************************
+ok: [nginx-lb]
+
+TASK [nginx-lb : Copy nginx-script-lb file] ************************************
+ok: [nginx-lb]
+
+PLAY RECAP *********************************************************************
+nginx-lb                   : ok=11   changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+swarm-manager              : ok=11   changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+swarm-worker               : ok=10   changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Docker-login, build, and push )
+[Pipeline] git
+The recommended git tool is: git
+using credential bd42fab1-6db5-49a3-bf99-7e52de6e500b
+ > git rev-parse --resolve-git-dir /home/jenkins/.jenkins/workspace/f1-app/.git # timeout=10
+Fetching changes from the remote Git repository
+ > git config remote.origin.url git@github.com:Jamalh8/QA-Practical-Project.git # timeout=10
+Fetching upstream changes from git@github.com:Jamalh8/QA-Practical-Project.git
+ > git --version # timeout=10
+ > git --version # 'git version 2.25.1'
+using GIT_SSH to set credentials 
+ > git fetch --tags --force --progress -- git@github.com:Jamalh8/QA-Practical-Project.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git rev-parse refs/remotes/origin/feature/ansible^{commit} # timeout=10
+Checking out Revision a2cf62a0c4e209c5e48088d881d3bc605148b042 (refs/remotes/origin/feature/ansible)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f a2cf62a0c4e209c5e48088d881d3bc605148b042 # timeout=10
+ > git branch -a -v --no-abbrev # timeout=10
+ > git branch -D feature/ansible # timeout=10
+ > git checkout -b feature/ansible a2cf62a0c4e209c5e48088d881d3bc605148b042 # timeout=10
+Commit message: "completed 1st draft - will need to proof read"
+[Pipeline] sh
++ docker-compose build
+#1 [****/cars-rating:1 internal] load build definition from Dockerfile
+#1 transferring dockerfile: 31B done
+#1 DONE 0.0s
+
+#2 [****/cars-generator:1 internal] load build definition from Dockerfile
+#2 transferring dockerfile: 31B done
+#2 DONE 0.0s
+
+#3 [****/cars-drivers:1 internal] load build definition from Dockerfile
+#3 transferring dockerfile: 31B done
+#3 DONE 0.0s
+
+#4 [****/cars-front:1 internal] load build definition from Dockerfile
+#4 transferring dockerfile: 31B 0.0s done
+#4 DONE 0.0s
+
+#5 [****/cars-rating:1 internal] load .dockerignore
+#5 transferring context: 34B done
+#5 DONE 0.0s
+
+#6 [****/cars-generator:1 internal] load .dockerignore
+#6 transferring context: 34B done
+#6 DONE 0.0s
+
+#7 [****/cars-drivers:1 internal] load .dockerignore
+#7 transferring context: 34B done
+#7 DONE 0.0s
+
+#8 [****/cars-front:1 internal] load .dockerignore
+#8 transferring context: 34B done
+#8 DONE 0.0s
+
+#9 [****/cars-generator:1 internal] load metadata for docker.io/library/python:3.6
+#9 DONE 0.5s
+
+#10 [****/cars-front:1 1/4] FROM docker.io/library/python:3.6@sha256:f8652afaf88c25f0d22354d547d892591067aa4026a7fa9a6819df9f300af6fc
+#10 DONE 0.0s
+
+#11 [****/cars-front:1 internal] load build context
+#11 ...
+
+#12 [****/cars-generator:1 internal] load build context
+#12 transferring context: 2.50MB 0.4s done
+#12 DONE 0.4s
+
+#13 [****/cars-front:1 2/4] WORKDIR /app
+#13 CACHED
+
+#11 [****/cars-front:1 internal] load build context
+#11 transferring context: 2.52MB 0.4s done
+#11 DONE 0.5s
+
+#14 [****/cars-drivers:1 internal] load build context
+#14 transferring context: 2.50MB 0.4s done
+#14 DONE 0.4s
+
+#15 [****/cars-rating:1 internal] load build context
+#15 transferring context: 2.52MB 0.4s done
+#15 DONE 0.5s
+
+#16 [****/cars-rating:1 3/4] COPY . .
+#16 DONE 2.9s
+
+#17 [****/cars-rating:1 4/4] RUN pip3 install -r requirements.txt
+#17 ...
+
+#18 [****/cars-front:1 3/4] COPY . .
+#18 DONE 3.0s
+
+#19 [****/cars-drivers:1 3/4] COPY . .
+#19 DONE 3.0s
+
+#20 [****/cars-generator:1 3/4] COPY . .
+#20 DONE 3.1s
+
+#21 [****/cars-generator:1 4/4] RUN pip3 install -r requirements.txt
+#21 8.032 Collecting flask
+#21 ...
+
+#17 [****/cars-rating:1 4/4] RUN pip3 install -r requirements.txt
+#17 8.015 Collecting flask
+#17 8.072   Downloading Flask-2.0.3-py3-none-any.whl (95 kB)
+#17 8.449 Collecting Werkzeug>=2.0
+#17 8.464   Downloading Werkzeug-2.0.3-py3-none-any.whl (289 kB)
+#17 8.617 Collecting itsdangerous>=2.0
+#17 8.630   Downloading itsdangerous-2.0.1-py3-none-any.whl (18 kB)
+#17 8.924 Collecting Jinja2>=3.0
+#17 8.935   Downloading Jinja2-3.0.3-py3-none-any.whl (133 kB)
+#17 9.455 Collecting click>=7.1.2
+#17 9.468   Downloading click-8.0.4-py3-none-any.whl (97 kB)
+#17 10.00 Collecting importlib-metadata
+#17 10.02   Downloading importlib_metadata-4.8.3-py3-none-any.whl (17 kB)
+#17 ...
+
+#22 [****/cars-drivers:1 4/4] RUN pip3 install -r requirements.txt
+#0 8.059 Collecting flask
+#0 8.127   Downloading Flask-2.0.3-py3-none-any.whl (95 kB)
+#0 8.480 Collecting Jinja2>=3.0
+#0 8.495   Downloading Jinja2-3.0.3-py3-none-any.whl (133 kB)
+#0 8.654 Collecting itsdangerous>=2.0
+#0 8.665   Downloading itsdangerous-2.0.1-py3-none-any.whl (18 kB)
+#0 8.987 Collecting Werkzeug>=2.0
+#0 9.057   Downloading Werkzeug-2.0.3-py3-none-any.whl (289 kB)
+#0 9.595 Collecting click>=7.1.2
+#0 9.603   Downloading click-8.0.4-py3-none-any.whl (97 kB)
+#22 ...
+
+#23 [****/cars-front:1 4/4] RUN pip3 install -r requirements.txt
+#0 8.073 Collecting flask
+#0 8.122   Downloading Flask-2.0.3-py3-none-any.whl (95 kB)
+#0 8.622 Collecting requests
+#0 8.631   Downloading requests-2.27.1-py2.py3-none-any.whl (63 kB)
+#0 8.983 Collecting Werkzeug>=2.0
+#0 9.122   Downloading Werkzeug-2.0.3-py3-none-any.whl (289 kB)
+#0 9.549 Collecting Jinja2>=3.0
+#0 9.560   Downloading Jinja2-3.0.3-py3-none-any.whl (133 kB)
+#0 9.747 Collecting itsdangerous>=2.0
+#0 9.764   Downloading itsdangerous-2.0.1-py3-none-any.whl (18 kB)
+#0 10.04 Collecting click>=7.1.2
+#0 10.06   Downloading click-8.0.4-py3-none-any.whl (97 kB)
+#23 ...
+
+#22 [****/cars-drivers:1 4/4] RUN pip3 install -r requirements.txt
+#22 10.35 Collecting importlib-metadata
+#22 10.37   Downloading importlib_metadata-4.8.3-py3-none-any.whl (17 kB)
+#22 11.19 Collecting MarkupSafe>=2.0
+#22 11.21   Downloading MarkupSafe-2.0.1-cp36-cp36m-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_12_x86_64.manylinux2010_x86_64.whl (30 kB)
+#22 11.37 Collecting dataclasses
+#22 11.38   Downloading dataclasses-0.8-py3-none-any.whl (19 kB)
+#22 11.87 Collecting zipp>=0.5
+#22 11.88   Downloading zipp-3.6.0-py3-none-any.whl (5.3 kB)
+#22 12.17 Collecting typing-extensions>=3.6.4
+#22 12.18   Downloading typing_extensions-4.1.1-py3-none-any.whl (26 kB)
+#22 12.93 Installing collected packages: zipp, typing-extensions, MarkupSafe, importlib-metadata, dataclasses, Werkzeug, Jinja2, itsdangerous, click, flask
+#22 14.71 Successfully installed Jinja2-3.0.3 MarkupSafe-2.0.1 Werkzeug-2.0.3 click-8.0.4 dataclasses-0.8 flask-2.0.3 importlib-metadata-4.8.3 itsdangerous-2.0.1 typing-extensions-4.1.1 zipp-3.6.0
+#22 14.71 WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv
+#22 15.47 WARNING: You are using pip version 21.2.4; however, version 21.3.1 is available.
+#22 15.47 You should consider upgrading via the '/usr/local/bin/python -m pip install --upgrade pip' command.
+#22 ...
+
+#17 [****/cars-rating:1 4/4] RUN pip3 install -r requirements.txt
+#17 10.78 Collecting MarkupSafe>=2.0
+#17 10.80   Downloading MarkupSafe-2.0.1-cp36-cp36m-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_12_x86_64.manylinux2010_x86_64.whl (30 kB)
+#17 10.90 Collecting dataclasses
+#17 10.92   Downloading dataclasses-0.8-py3-none-any.whl (19 kB)
+#17 11.29 Collecting zipp>=0.5
+#17 11.31   Downloading zipp-3.6.0-py3-none-any.whl (5.3 kB)
+#17 11.47 Collecting typing-extensions>=3.6.4
+#17 11.49   Downloading typing_extensions-4.1.1-py3-none-any.whl (26 kB)
+#17 12.32 Installing collected packages: zipp, typing-extensions, MarkupSafe, importlib-metadata, dataclasses, Werkzeug, Jinja2, itsdangerous, click, flask
+#17 14.08 Successfully installed Jinja2-3.0.3 MarkupSafe-2.0.1 Werkzeug-2.0.3 click-8.0.4 dataclasses-0.8 flask-2.0.3 importlib-metadata-4.8.3 itsdangerous-2.0.1 typing-extensions-4.1.1 zipp-3.6.0
+#17 14.08 WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv
+#17 14.78 WARNING: You are using pip version 21.2.4; however, version 21.3.1 is available.
+#17 14.78 You should consider upgrading via the '/usr/local/bin/python -m pip install --upgrade pip' command.
+#17 DONE 15.7s
+
+#23 [****/cars-front:1 4/4] RUN pip3 install -r requirements.txt
+#23 10.40 Collecting certifi>=2017.4.17
+#23 10.42   Downloading certifi-2022.6.15-py3-none-any.whl (160 kB)
+#23 10.63 Collecting idna<4,>=2.5
+#23 10.64   Downloading idna-3.3-py3-none-any.whl (61 kB)
+#23 11.10 Collecting urllib3<1.27,>=1.21.1
+#23 11.11   Downloading urllib3-1.26.9-py2.py3-none-any.whl (138 kB)
+#23 11.36 Collecting charset-normalizer~=2.0.0
+#23 11.38   Downloading charset_normalizer-2.0.12-py3-none-any.whl (39 kB)
+#23 12.31 Collecting importlib-metadata
+#23 12.33   Downloading importlib_metadata-4.8.3-py3-none-any.whl (17 kB)
+#23 13.09 Collecting MarkupSafe>=2.0
+#23 13.10   Downloading MarkupSafe-2.0.1-cp36-cp36m-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_12_x86_64.manylinux2010_x86_64.whl (30 kB)
+#23 13.36 Collecting dataclasses
+#23 13.38   Downloading dataclasses-0.8-py3-none-any.whl (19 kB)
+#23 13.71 Collecting typing-extensions>=3.6.4
+#23 13.73   Downloading typing_extensions-4.1.1-py3-none-any.whl (26 kB)
+#23 14.02 Collecting zipp>=0.5
+#23 14.04   Downloading zipp-3.6.0-py3-none-any.whl (5.3 kB)
+#23 14.86 Installing collected packages: zipp, typing-extensions, MarkupSafe, importlib-metadata, dataclasses, Werkzeug, urllib3, Jinja2, itsdangerous, idna, click, charset-normalizer, certifi, requests, flask
+#23 ...
+
+#21 [****/cars-generator:1 4/4] RUN pip3 install -r requirements.txt
+#21 8.103   Downloading Flask-2.0.3-py3-none-any.whl (95 kB)
+#21 8.285 Collecting itsdangerous>=2.0
+#21 8.303   Downloading itsdangerous-2.0.1-py3-none-any.whl (18 kB)
+#21 8.521 Collecting Jinja2>=3.0
+#21 8.551   Downloading Jinja2-3.0.3-py3-none-any.whl (133 kB)
+#21 8.859 Collecting Werkzeug>=2.0
+#21 8.869   Downloading Werkzeug-2.0.3-py3-none-any.whl (289 kB)
+#21 9.463 Collecting click>=7.1.2
+#21 9.480   Downloading click-8.0.4-py3-none-any.whl (97 kB)
+#21 10.18 Collecting importlib-metadata
+#21 10.21   Downloading importlib_metadata-4.8.3-py3-none-any.whl (17 kB)
+#21 10.98 Collecting MarkupSafe>=2.0
+#21 11.00   Downloading MarkupSafe-2.0.1-cp36-cp36m-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_12_x86_64.manylinux2010_x86_64.whl (30 kB)
+#21 11.15 Collecting dataclasses
+#21 11.16   Downloading dataclasses-0.8-py3-none-any.whl (19 kB)
+#21 11.55 Collecting zipp>=0.5
+#21 11.56   Downloading zipp-3.6.0-py3-none-any.whl (5.3 kB)
+#21 11.80 Collecting typing-extensions>=3.6.4
+#21 11.82   Downloading typing_extensions-4.1.1-py3-none-any.whl (26 kB)
+#21 12.61 Installing collected packages: zipp, typing-extensions, MarkupSafe, importlib-metadata, dataclasses, Werkzeug, Jinja2, itsdangerous, click, flask
+#21 14.41 Successfully installed Jinja2-3.0.3 MarkupSafe-2.0.1 Werkzeug-2.0.3 click-8.0.4 dataclasses-0.8 flask-2.0.3 importlib-metadata-4.8.3 itsdangerous-2.0.1 typing-extensions-4.1.1 zipp-3.6.0
+#21 14.42 WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv
+#21 15.10 WARNING: You are using pip version 21.2.4; however, version 21.3.1 is available.
+#21 15.10 You should consider upgrading via the '/usr/local/bin/python -m pip install --upgrade pip' command.
+#21 DONE 15.7s
+
+#22 [****/cars-drivers:1 4/4] RUN pip3 install -r requirements.txt
+#22 DONE 15.7s
+
+#24 [****/cars-drivers:1] exporting to image
+#24 exporting layers
+#24 ...
+
+#23 [****/cars-front:1 4/4] RUN pip3 install -r requirements.txt
+#23 16.94 WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv
+#23 16.95 Successfully installed Jinja2-3.0.3 MarkupSafe-2.0.1 Werkzeug-2.0.3 certifi-2022.6.15 charset-normalizer-2.0.12 click-8.0.4 dataclasses-0.8 flask-2.0.3 idna-3.3 importlib-metadata-4.8.3 itsdangerous-2.0.1 requests-2.27.1 typing-extensions-4.1.1 urllib3-1.26.9 zipp-3.6.0
+#23 17.26 WARNING: You are using pip version 21.2.4; however, version 21.3.1 is available.
+#23 17.26 You should consider upgrading via the '/usr/local/bin/python -m pip install --upgrade pip' command.
+#23 DONE 17.7s
+
+#24 [****/cars-front:1] exporting to image
+#24 exporting layers 3.1s done
+#24 writing image sha256:c3f54b520a592b421303f6b06cbfe8894c0f8c3ab0877063123e4bc3ca19c9e0 done
+#24 naming to docker.io/****/cars-drivers:1
+#24 naming to docker.io/****/cars-drivers:1 done
+#24 exporting layers 3.4s done
+#24 writing image sha256:799763c7e8f71397533f21b7b08016e744d85c1fccb23b9967f061aa9bacfa1f done
+#24 naming to docker.io/****/cars-rating:1 done
+#24 exporting layers 3.6s done
+#24 writing image sha256:dcecc1ba0cb0f74537d1bee8b2b6fbaca6942486de97cee46ca587ab53776ea8 done
+#24 naming to docker.io/****/cars-generator:1 done
+#24 exporting layers 1.9s done
+#24 writing image sha256:930125ba67e7da15980812bf3a0c79c9ae5b1651321900f4266f17b35438ed8e done
+#24 naming to docker.io/****/cars-front:1 done
+#24 DONE 3.9s
+
+Use 'docker scan' to run Snyk tests against images to find vulnerabilities and learn how to fix them
++ docker login --username **** --password ****
+WARNING! Using --password via the CLI is insecure. Use --password-stdin.
+WARNING! Your password will be stored unencrypted in /home/jenkins/.docker/config.json.
+Configure a credential helper to remove this warning. See
+https://docs.docker.com/engine/reference/commandline/login/#credentials-store
+
+Login Succeeded
++ docker-compose push
+nginx Skipped 
+Pushing service_4: 0c36e58367d5 Preparing 
+Pushing service_4: 357b6583cc0a Preparing 
+Pushing service_4: b24625c5ef4b Preparing 
+Pushing service_4: aa4c808c19f6 Preparing 
+Pushing service_4: 8ba9f690e8ba Preparing 
+Pushing service_4: 3e607d59ef9f Preparing 
+Pushing service_4: 1e18e7e1fcc2 Preparing 
+Pushing service_4: c3a0d593ed24 Preparing 
+Pushing service_4: 26a504e63be4 Preparing 
+Pushing service_4: 8bf42db0de72 Preparing 
+Pushing service_4: 31892cc314cb Preparing 
+Pushing service_4: 11936051f93b Preparing 
+Pushing service_1: 9084d2990c33 Preparing 
+Pushing service_4: 3e607d59ef9f Waiting 
+Pushing service_4: 1e18e7e1fcc2 Waiting 
+Pushing service_4: c3a0d593ed24 Waiting 
+Pushing service_4: 26a504e63be4 Waiting 
+Pushing service_4: 8bf42db0de72 Waiting 
+Pushing service_4: 31892cc314cb Waiting 
+Pushing service_4: 11936051f93b Waiting 
+Pushing service_1: 2f4b0378edb1 Preparing 
+Pushing service_1: b24625c5ef4b Preparing 
+Pushing service_1: aa4c808c19f6 Preparing 
+Pushing service_1: 8ba9f690e8ba Preparing 
+Pushing service_1: 3e607d59ef9f Preparing 
+Pushing service_1: 1e18e7e1fcc2 Preparing 
+Pushing service_1: c3a0d593ed24 Preparing 
+Pushing service_1: 26a504e63be4 Preparing 
+Pushing service_1: 8bf42db0de72 Preparing 
+Pushing service_1: 31892cc314cb Preparing 
+Pushing service_1: 11936051f93b Preparing 
+Pushing service_1: 9084d2990c33 Waiting 
+Pushing service_1: 2f4b0378edb1 Waiting 
+Pushing service_1: b24625c5ef4b Waiting 
+Pushing service_1: aa4c808c19f6 Waiting 
+Pushing service_1: 8ba9f690e8ba Waiting 
+Pushing service_1: 3e607d59ef9f Waiting 
+Pushing service_1: 1e18e7e1fcc2 Waiting 
+Pushing service_3: 40187dec3024 Preparing 
+Pushing service_3: 5dea1a7693a5 Preparing 
+Pushing service_3: b24625c5ef4b Preparing 
+Pushing service_3: aa4c808c19f6 Preparing 
+Pushing service_3: 8ba9f690e8ba Preparing 
+Pushing service_3: 3e607d59ef9f Preparing 
+Pushing service_3: 1e18e7e1fcc2 Preparing 
+Pushing service_3: c3a0d593ed24 Preparing 
+Pushing service_3: 26a504e63be4 Preparing 
+Pushing service_3: 8bf42db0de72 Preparing 
+Pushing service_3: 31892cc314cb Preparing 
+Pushing service_3: 11936051f93b Preparing 
+Pushing service_3: 40187dec3024 Waiting 
+Pushing service_3: 5dea1a7693a5 Waiting 
+Pushing service_3: b24625c5ef4b Waiting 
+Pushing service_3: aa4c808c19f6 Waiting 
+Pushing service_3: 8ba9f690e8ba Waiting 
+Pushing service_3: 3e607d59ef9f Waiting 
+Pushing service_3: 1e18e7e1fcc2 Waiting 
+Pushing service_3: c3a0d593ed24 Waiting 
+Pushing service_3: 26a504e63be4 Waiting 
+Pushing service_3: 8bf42db0de72 Waiting 
+Pushing service_3: 31892cc314cb Waiting 
+Pushing service_3: 11936051f93b Waiting 
+Pushing service_1: c3a0d593ed24 Waiting 
+Pushing service_1: 26a504e63be4 Waiting 
+Pushing service_1: 8bf42db0de72 Waiting 
+Pushing service_1: 31892cc314cb Waiting 
+Pushing service_1: 11936051f93b Waiting 
+Pushing service_2: 3055281ebd3b Preparing 
+Pushing service_2: 7649722e0008 Preparing 
+Pushing service_2: b24625c5ef4b Preparing 
+Pushing service_2: aa4c808c19f6 Preparing 
+Pushing service_2: 8ba9f690e8ba Preparing 
+Pushing service_2: 3e607d59ef9f Preparing 
+Pushing service_2: 1e18e7e1fcc2 Preparing 
+Pushing service_2: c3a0d593ed24 Preparing 
+Pushing service_2: 26a504e63be4 Preparing 
+Pushing service_2: 8bf42db0de72 Preparing 
+Pushing service_2: 31892cc314cb Preparing 
+Pushing service_2: 11936051f93b Preparing 
+Pushing service_2: 3055281ebd3b Waiting 
+Pushing service_2: b24625c5ef4b Waiting 
+Pushing service_2: aa4c808c19f6 Waiting 
+Pushing service_2: 8ba9f690e8ba Waiting 
+Pushing service_2: 3e607d59ef9f Waiting 
+Pushing service_2: 1e18e7e1fcc2 Waiting 
+Pushing service_2: c3a0d593ed24 Waiting 
+Pushing service_2: 26a504e63be4 Waiting 
+Pushing service_2: 8bf42db0de72 Waiting 
+Pushing service_2: 31892cc314cb Waiting 
+Pushing service_2: 11936051f93b Waiting 
+Pushing service_4: 8ba9f690e8ba Layer already exists 
+Pushing service_4: aa4c808c19f6 Layer already exists 
+Pushing service_4: b24625c5ef4b Layer already exists 
+Pushing service_4: 357b6583cc0a Pushing [>                                                  ]  179.2kB/17.9MB
+Pushing service_4: 0c36e58367d5 Pushing [>                                                  ]  124.1kB/11.13MB
+Pushing service_4: 3e607d59ef9f Layer already exists 
+Pushing service_4: 1e18e7e1fcc2 Layer already exists 
+Pushing service_4: 357b6583cc0a Pushing [=>                                                 ]  368.2kB/17.9MB
+Pushing service_4: 0c36e58367d5 Pushing [=>                                                 ]  389.1kB/11.13MB
+Pushing service_4: c3a0d593ed24 Layer already exists 
+Pushing service_4: 0c36e58367d5 Pushing [===>                                               ]  780.7kB/11.13MB
+Pushing service_4: 357b6583cc0a Pushing [==>                                                ]  768.5kB/17.9MB
+Pushing service_4: 0c36e58367d5 Pushing [========>                                          ]  1.968MB/11.13MB
+Pushing service_4: 357b6583cc0a Pushing [===>                                               ]  1.343MB/17.9MB
+Pushing service_4: 0c36e58367d5 Pushing [============>                                      ]  2.836MB/11.13MB
+Pushing service_4: 357b6583cc0a Pushing [======>                                            ]  2.464MB/17.9MB
+Pushing service_4: 0c36e58367d5 Pushing [===============>                                   ]  3.553MB/11.13MB
+Pushing service_4: 357b6583cc0a Pushing [========>                                          ]  3.201MB/17.9MB
+Pushing service_4: 8bf42db0de72 Layer already exists 
+Pushing service_4: 26a504e63be4 Layer already exists 
+Pushing service_4: 0c36e58367d5 Pushing [===================>                               ]  4.279MB/11.13MB
+Pushing service_4: 357b6583cc0a Pushing [============>                                      ]  4.316MB/17.9MB
+Pushing service_4: 31892cc314cb Layer already exists 
+Pushing service_4: 0c36e58367d5 Pushing [========================>                          ]  5.397MB/11.13MB
+Pushing service_4: 357b6583cc0a Pushing [===============>                                   ]   5.47MB/17.9MB
+Pushing service_4: 0c36e58367d5 Pushing [=============================>                     ]   6.49MB/11.13MB
+Pushing service_4: 357b6583cc0a Pushing [=================>                                 ]  6.387MB/17.9MB
+Pushing service_4: 0c36e58367d5 Pushing [=================================>                 ]   7.46MB/11.13MB
+Pushing service_4: 357b6583cc0a Pushing [=====================>                             ]  7.559MB/17.9MB
+Pushing service_4: 0c36e58367d5 Pushing [=====================================>             ]  8.437MB/11.13MB
+Pushing service_4: 357b6583cc0a Pushing [=======================>                           ]  8.463MB/17.9MB
+Pushing service_4: 11936051f93b Layer already exists 
+Pushing service_4: 0c36e58367d5 Pushing [==========================================>        ]  9.501MB/11.13MB
+Pushing service_4: 357b6583cc0a Pushing [==========================>                        ]  9.607MB/17.9MB
+Pushing service_4: 0c36e58367d5 Pushing [===============================================>   ]  10.58MB/11.13MB
+Pushing service_4: 357b6583cc0a Pushing [=============================>                     ]  10.72MB/17.9MB
+Pushing service_4: 0c36e58367d5 Pushing [==================================================>]  11.67MB
+Pushing service_4: 0c36e58367d5 Pushing [==================================================>]  11.96MB
+Pushing service_4: 357b6583cc0a Pushing [=================================>                 ]  11.82MB/17.9MB
+Pushing service_4: 357b6583cc0a Pushing [====================================>              ]  13.18MB/17.9MB
+Pushing service_1: b24625c5ef4b Layer already exists 
+Pushing service_1: 2f4b0378edb1 Pushing [>                                                  ]  182.9kB/17.88MB
+Pushing service_4: 357b6583cc0a Pushing [=======================================>           ]  14.12MB/17.9MB
+Pushing service_4: 357b6583cc0a Pushing [============================================>      ]  15.81MB/17.9MB
+Pushing service_1: 2f4b0378edb1 Pushing [=>                                                 ]  375.9kB/17.88MB
+Pushing service_1: 9084d2990c33 Pushing [>                                                  ]  158.2kB/13.84MB
+Pushing service_4: 357b6583cc0a Pushing [===============================================>   ]  17.16MB/17.9MB
+Pushing service_1: aa4c808c19f6 Layer already exists 
+Pushing service_4: 357b6583cc0a Pushing [==================================================>]  18.89MB
+Pushing service_1: 2f4b0378edb1 Pushing [==>                                                ]  941.6kB/17.88MB
+Pushing service_4: 357b6583cc0a Pushing [==================================================>]  19.24MB
+Pushing service_1: 9084d2990c33 Pushing [=>                                                 ]  302.1kB/13.84MB
+Pushing service_1: 2f4b0378edb1 Pushing [=====>                                             ]  1.885MB/17.88MB
+Pushing service_1: 9084d2990c33 Pushing [==>                                                ]  605.7kB/13.84MB
+Pushing service_1: 2f4b0378edb1 Pushing [=========>                                         ]  3.369MB/17.88MB
+Pushing service_1: 9084d2990c33 Pushing [====>                                              ]  1.364MB/13.84MB
+Pushing service_1: 2f4b0378edb1 Pushing [=============>                                     ]  4.682MB/17.88MB
+Pushing service_1: 9084d2990c33 Pushing [========>                                          ]  2.397MB/13.84MB
+Pushing service_1: 2f4b0378edb1 Pushing [================>                                  ]  5.998MB/17.88MB
+Pushing service_1: 8ba9f690e8ba Layer already exists 
+Pushing service_1: 9084d2990c33 Pushing [============>                                      ]  3.406MB/13.84MB
+Pushing service_1: 2f4b0378edb1 Pushing [====================>                              ]  7.162MB/17.88MB
+Pushing service_1: 9084d2990c33 Pushing [===============>                                   ]  4.427MB/13.84MB
+Pushing service_1: 2f4b0378edb1 Pushing [======================>                            ]  8.075MB/17.88MB
+Pushing service_1: 9084d2990c33 Pushing [====================>                              ]    5.8MB/13.84MB
+Pushing service_1: 2f4b0378edb1 Pushing [=========================>                         ]  9.186MB/17.88MB
+Pushing service_1: 9084d2990c33 Pushing [=========================>                         ]   7.01MB/13.84MB
+Pushing service_1: 2f4b0378edb1 Pushing [============================>                      ]  10.34MB/17.88MB
+Pushing service_1: 9084d2990c33 Pushing [============================>                      ]  7.891MB/13.84MB
+Pushing service_1: 3e607d59ef9f Layer already exists 
+Pushing service_1: 2f4b0378edb1 Pushing [================================>                  ]  11.62MB/17.88MB
+Pushing service_1: 9084d2990c33 Pushing [================================>                  ]  9.049MB/13.84MB
+Pushing service_1: 2f4b0378edb1 Pushing [==================================>                ]  12.37MB/17.88MB
+Pushing service_1: 9084d2990c33 Pushing [====================================>              ]   10.1MB/13.84MB
+Pushing service_1: 2f4b0378edb1 Pushing [=====================================>             ]  13.55MB/17.88MB
+Pushing service_1: 9084d2990c33 Pushing [========================================>          ]  11.15MB/13.84MB
+Pushing service_4: 0c36e58367d5 Pushed 
+Pushing service_1: 2f4b0378edb1 Pushing [========================================>          ]  14.63MB/17.88MB
+Pushing service_1: 9084d2990c33 Pushing [============================================>      ]  12.32MB/13.84MB
+Pushing service_1: 2f4b0378edb1 Pushing [============================================>      ]  15.79MB/17.88MB
+Pushing service_1: 9084d2990c33 Pushing [================================================>  ]   13.5MB/13.84MB
+Pushing service_1: 1e18e7e1fcc2 Layer already exists 
+Pushing service_1: 2f4b0378edb1 Pushing [===============================================>   ]   16.9MB/17.88MB
+Pushing service_1: 9084d2990c33 Pushing [==================================================>]  14.67MB
+Pushing service_1: 9084d2990c33 Pushing [==================================================>]  14.87MB
+Pushing service_1: 2f4b0378edb1 Pushing [==================================================>]   18.3MB
+Pushing service_1: 2f4b0378edb1 Pushing [==================================================>]  19.22MB
+Pushing service_1: c3a0d593ed24 Layer already exists 
+Pushing service_1: 26a504e63be4 Layer already exists 
+Pushing service_4: 357b6583cc0a Pushed 
+Pushing service_1: 8bf42db0de72 Layer already exists 
+Pushing service_1: 31892cc314cb Layer already exists 
+Pushing service_1: 11936051f93b Layer already exists 
+Pushing service_3: b24625c5ef4b Layer already exists 
+Pushing service_3: 5dea1a7693a5 Pushing [>                                                  ]  156.2kB/15.56MB
+Pushing service_3: 40187dec3024 Pushing [>                                                  ]  124.1kB/11.13MB
+Pushing service_3: 5dea1a7693a5 Pushing [=>                                                 ]  337.5kB/15.56MB
+Pushing service_3: aa4c808c19f6 Layer already exists 
+Pushing service_3: 5dea1a7693a5 Pushing [==>                                                ]  841.3kB/15.56MB
+Pushing service_3: 40187dec3024 Pushing [=>                                                 ]  389.1kB/11.13MB
+Pushing service_3: 5dea1a7693a5 Pushing [=====>                                             ]   1.65MB/15.56MB
+Pushing service_3: 40187dec3024 Pushing [=====>                                             ]   1.14MB/11.13MB
+Pushing service_3: 5dea1a7693a5 Pushing [========>                                          ]    2.5MB/15.56MB
+Pushing service_1: 2f4b0378edb1 Pushed 
+Pushing service_3: 40187dec3024 Pushing [=========>                                         ]  2.203MB/11.13MB
+Pushing service_3: 5dea1a7693a5 Pushing [===========>                                       ]   3.65MB/15.56MB
+Pushing service_3: 8ba9f690e8ba Layer already exists 
+Pushing service_3: 40187dec3024 Pushing [=============>                                     ]  3.088MB/11.13MB
+Pushing service_3: 5dea1a7693a5 Pushing [==============>                                    ]  4.641MB/15.56MB
+Pushing service_3: 40187dec3024 Pushing [==================>                                ]  4.022MB/11.13MB
+Pushing service_3: 5dea1a7693a5 Pushing [==================>                                ]  5.823MB/15.56MB
+Pushing service_1: 9084d2990c33 Pushed 
+Pushing service_3: 40187dec3024 Pushing [======================>                            ]  5.022MB/11.13MB
+Pushing service_3: 5dea1a7693a5 Pushing [======================>                            ]  6.984MB/15.56MB
+Pushing service_3: 40187dec3024 Pushing [===========================>                       ]  6.094MB/11.13MB
+Pushing service_3: 5dea1a7693a5 Pushing [=========================>                         ]  7.975MB/15.56MB
+Pushing service_3: 3e607d59ef9f Layer already exists 
+Pushing service_3: 40187dec3024 Pushing [================================>                  ]  7.228MB/11.13MB
+Pushing service_3: 5dea1a7693a5 Pushing [=============================>                     ]  9.124MB/15.56MB
+Pushing service_3: 1e18e7e1fcc2 Layer already exists 
+Pushing service_3: 40187dec3024 Pushing [====================================>              ]  8.193MB/11.13MB
+Pushing service_3: 5dea1a7693a5 Pushing [================================>                  ]  10.11MB/15.56MB
+Pushing service_3: 40187dec3024 Pushing [=========================================>         ]  9.151MB/11.13MB
+Pushing service_3: 5dea1a7693a5 Pushing [====================================>              ]  11.42MB/15.56MB
+Pushing service_3: 40187dec3024 Pushing [=============================================>     ]  10.21MB/11.13MB
+Pushing service_3: 5dea1a7693a5 Pushing [========================================>          ]  12.57MB/15.56MB
+Pushing service_3: 40187dec3024 Pushing [=================================================> ]  11.07MB/11.13MB
+Pushing service_3: 5dea1a7693a5 Pushing [===========================================>       ]   13.4MB/15.56MB
+Pushing service_3: 40187dec3024 Pushing [==================================================>]  11.96MB
+Pushing service_3: c3a0d593ed24 Layer already exists 
+Pushing service_3: 26a504e63be4 Layer already exists 
+Pushing service_3: 5dea1a7693a5 Pushing [===============================================>   ]   14.9MB/15.56MB
+Pushing service_3: 8bf42db0de72 Layer already exists 
+Pushing service_3: 5dea1a7693a5 Pushing [==================================================>]   16.7MB
+Pushing service_3: 31892cc314cb Layer already exists 
+Pushing service_3: 11936051f93b Layer already exists 
+Pushing service_2: b24625c5ef4b Layer already exists 
+Pushing service_2: 7649722e0008 Pushing [>                                                  ]  155.8kB/15.56MB
+Pushing service_2: 3055281ebd3b Pushing [>                                                  ]  124.1kB/11.13MB
+Pushing service_2: 7649722e0008 Pushing [=>                                                 ]  340.1kB/15.56MB
+Pushing service_2: aa4c808c19f6 Layer already exists 
+Pushing service_2: 3055281ebd3b Pushing [=>                                                 ]  389.1kB/11.13MB
+Pushing service_2: 7649722e0008 Pushing [==>                                                ]  843.9kB/15.56MB
+Pushing service_2: 3055281ebd3b Pushing [===>                                               ]  780.7kB/11.13MB
+Pushing service_2: 7649722e0008 Pushing [====>                                              ]  1.488MB/15.56MB
+Pushing service_2: 3055281ebd3b Pushing [========>                                          ]  1.846MB/11.13MB
+Pushing service_2: 7649722e0008 Pushing [========>                                          ]  2.502MB/15.56MB
+Pushing service_2: 3055281ebd3b Pushing [============>                                      ]  2.717MB/11.13MB
+Pushing service_2: 7649722e0008 Pushing [===========>                                       ]  3.653MB/15.56MB
+Pushing service_2: 3055281ebd3b Pushing [================>                                  ]  3.779MB/11.13MB
+Pushing service_2: 7649722e0008 Pushing [===============>                                   ]  4.815MB/15.56MB
+Pushing service_2: 8ba9f690e8ba Layer already exists 
+Pushing service_2: 3055281ebd3b Pushing [=====================>                             ]  4.795MB/11.13MB
+Pushing service_2: 7649722e0008 Pushing [===================>                               ]  6.009MB/15.56MB
+Pushing service_2: 3055281ebd3b Pushing [==========================>                        ]  5.859MB/11.13MB
+Pushing service_2: 7649722e0008 Pushing [=======================>                           ]  7.172MB/15.56MB
+Pushing service_3: 40187dec3024 Pushed 
+Pushing service_2: 3055281ebd3b Pushing [===============================>                   ]  6.985MB/11.13MB
+Pushing service_2: 7649722e0008 Pushing [=========================>                         ]  7.816MB/15.56MB
+Pushing service_2: 3055281ebd3b Pushing [====================================>              ]   8.07MB/11.13MB
+Pushing service_2: 7649722e0008 Pushing [============================>                      ]  8.965MB/15.56MB
+Pushing service_2: 3055281ebd3b Pushing [=======================================>           ]  8.787MB/11.13MB
+Pushing service_2: 7649722e0008 Pushing [===============================>                   ]  9.946MB/15.56MB
+Pushing service_3: 5dea1a7693a5 Pushed 
+Pushing service_2: 3e607d59ef9f Layer already exists 
+Pushing service_2: 3055281ebd3b Pushing [===========================================>       ]  9.616MB/11.13MB
+Pushing service_2: 7649722e0008 Pushing [===================================>               ]  11.09MB/15.56MB
+Pushing service_2: 3055281ebd3b Pushing [================================================>  ]  10.84MB/11.13MB
+Pushing service_2: 7649722e0008 Pushing [======================================>            ]  12.08MB/15.56MB
+Pushing service_2: 3055281ebd3b Pushing [==================================================>]  11.92MB
+Pushing service_2: 1e18e7e1fcc2 Layer already exists 
+Pushing service_2: 3055281ebd3b Pushing [==================================================>]  11.96MB
+Pushing service_2: 7649722e0008 Pushing [=========================================>         ]  13.05MB/15.56MB
+Pushing service_2: 7649722e0008 Pushing [===============================================>   ]  14.72MB/15.56MB
+Pushing service_2: c3a0d593ed24 Layer already exists 
+Pushing service_2: 26a504e63be4 Layer already exists 
+Pushing service_2: 7649722e0008 Pushing [==================================================>]   16.7MB
+Pushing service_2: 8bf42db0de72 Layer already exists 
+Pushing service_2: 31892cc314cb Layer already exists 
+Pushing service_2: 11936051f93b Layer already exists 
+Pushing service_2: 3055281ebd3b Pushed 
+Pushing service_2: 7649722e0008 Pushed 
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Deploy)
+[Pipeline] git
+The recommended git tool is: git
+using credential bd42fab1-6db5-49a3-bf99-7e52de6e500b
+ > git rev-parse --resolve-git-dir /home/jenkins/.jenkins/workspace/f1-app/.git # timeout=10
+Fetching changes from the remote Git repository
+ > git config remote.origin.url git@github.com:Jamalh8/QA-Practical-Project.git # timeout=10
+Fetching upstream changes from git@github.com:Jamalh8/QA-Practical-Project.git
+ > git --version # timeout=10
+ > git --version # 'git version 2.25.1'
+using GIT_SSH to set credentials 
+ > git fetch --tags --force --progress -- git@github.com:Jamalh8/QA-Practical-Project.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git rev-parse refs/remotes/origin/feature/ansible^{commit} # timeout=10
+Checking out Revision a2cf62a0c4e209c5e48088d881d3bc605148b042 (refs/remotes/origin/feature/ansible)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f a2cf62a0c4e209c5e48088d881d3bc605148b042 # timeout=10
+ > git branch -a -v --no-abbrev # timeout=10
+ > git branch -D feature/ansible # timeout=10
+ > git checkout -b feature/ansible a2cf62a0c4e209c5e48088d881d3bc605148b042 # timeout=10
+Commit message: "completed 1st draft - will need to proof read"
+[Pipeline] sh
++ scp docker-compose.yaml jamal@swarm-manager:/home/jamal/
++ scp nginx.conf jamal@swarm-manager:/home/jamal/
++ ssh jamal@swarm-manager docker stack deploy --compose-file docker-compose.yaml f1-stack
+Ignoring unsupported options: build
+
+Ignoring deprecated options:
+
+container_name: Setting the container name is not supported.
+
+Updating service f1-stack_service_3 (id: tbrftgn3thsxv8955mu7mv8lm)
+Updating service f1-stack_service_4 (id: btzszzchg7ogu2yfj3mzzlhd1)
+Updating service f1-stack_nginx (id: varx5mgz6rgmreeboxmvbnn9v)
+Updating service f1-stack_service_1 (id: i0d4u9bkm567izvq4qnafi8ys)
+Updating service f1-stack_service_2 (id: w7d0wssv8nyb9qqppko94si8n)
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Start-Nginx-lb)
+[Pipeline] git
+The recommended git tool is: git
+using credential bd42fab1-6db5-49a3-bf99-7e52de6e500b
+ > git rev-parse --resolve-git-dir /home/jenkins/.jenkins/workspace/f1-app/.git # timeout=10
+Fetching changes from the remote Git repository
+ > git config remote.origin.url git@github.com:Jamalh8/QA-Practical-Project.git # timeout=10
+Fetching upstream changes from git@github.com:Jamalh8/QA-Practical-Project.git
+ > git --version # timeout=10
+ > git --version # 'git version 2.25.1'
+using GIT_SSH to set credentials 
+ > git fetch --tags --force --progress -- git@github.com:Jamalh8/QA-Practical-Project.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git rev-parse refs/remotes/origin/feature/ansible^{commit} # timeout=10
+Checking out Revision a2cf62a0c4e209c5e48088d881d3bc605148b042 (refs/remotes/origin/feature/ansible)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f a2cf62a0c4e209c5e48088d881d3bc605148b042 # timeout=10
+ > git branch -a -v --no-abbrev # timeout=10
+ > git branch -D feature/ansible # timeout=10
+ > git checkout -b feature/ansible a2cf62a0c4e209c5e48088d881d3bc605148b042 # timeout=10
+Commit message: "completed 1st draft - will need to proof read"
+[Pipeline] sh
++ ssh jamal@nginx-lb ./nginx-lb-script.sh
+nginx
+nginx
+3fb7c7628cfb35bfdb976add06ccd8329c62339ca35e30b6b1078da45d162011
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] // withCredentials
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] End of Pipeline
+Finished: SUCCESS
