@@ -9,9 +9,7 @@ pipeline {
             steps {
                 //
                 git branch: 'feature/ansible', credentialsId: 'bd42fab1-6db5-49a3-bf99-7e52de6e500b', url: 'git@github.com:Jamalh8/QA-Practical-Project.git'
-                sh '''sudo apt install python3 python3-pip python3-venv -y
-                pip3 install pytest pytest-cov
-                sudo chmod +x test.sh
+                sh '''sudo chmod +x test.sh
                 ./test.sh'''
             }
         }
