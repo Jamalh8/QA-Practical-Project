@@ -14,6 +14,8 @@
 
 [Application Overview](#Application-Overview)
 
+[Swarm Overview](#Swarm-Overview)
+
 [Ansible Playbook](#Ansible-Playbook)
 
 [CICD Pipeline](#CICD-Pipeline)
@@ -92,7 +94,17 @@ To meet the requirements I used Trello for my project tracking. I assigned tasks
 
 MoSCoW prioritisation was used and this dictated the tasks that were put into the sprint backlog. A visual of my Trello board can be down below to help understand this. 
 
-<p><img src="https://github.com/Jamalh8/QA-Practical-Project/blob/feature/jenkinsfile/images_and_diagram/Trello-%20In%20progress.png" alt="test" width="1000" height="450"></p>
+The image below shows my progress through my project tracker.
+
+<p><img src="https://github.com/Jamalh8/QA-Practical-Project/blob/feature/ansible/images_and_diagram/Trello-%20In%20progress.png" alt="test" width="1000" height="450"></p>
+
+This final image shows the end result of my trello board. 
+
+As you can see from the board, I was able to complete all the MUST HAVE tasks. The only thing I was unable to complete was adding an SQL database to persist the data that was being outputted. However, as this was a SHOULD HAVE tasks it is not required to meet the Minimum Viable Product (MVP).
+
+This particular tasks can be taken to the project backlog as part of future improvements.
+
+<p><img src="https://github.com/Jamalh8/QA-Practical-Project/blob/feature/ansible/images_and_diagram/Trello-done.png" alt="test" width="1000" height="450"></p>
 
 You can view my trello board directly by clicking [here](https://trello.com/b/r4G0troy/qa-practical-proj).
 
@@ -112,19 +124,19 @@ ___
 
 The images below shows the results of the tests that were ran against the 4 services.
 
-`Front-end test`
+***Front-end test***
 
 <p><img src="https://github.com/Jamalh8/QA-Practical-Project/blob/feature/jenkinsfile/images_and_diagram/test-front.png" alt="test" width="1000" height="450"></p>
 
-`Car-api test`
+***Car-api test***
 
 <p><img src="https://github.com/Jamalh8/QA-Practical-Project/blob/feature/jenkinsfile/images_and_diagram/test-car.png" alt="test" width="1000" height="450"></p>
 
-`Driver-api test`
+***Driver-api test***
 
 <p><img src="https://github.com/Jamalh8/QA-Practical-Project/blob/feature/jenkinsfile/images_and_diagram/test-driver.png" alt="test" width="1000" height="450"></p>
 
-`Rating-api test`
+***Rating-api test***
 
 <p><img src="https://github.com/Jamalh8/QA-Practical-Project/blob/feature/jenkinsfile/images_and_diagram/test-rating.png" alt="test" width="1000" height="450"></p>
 
@@ -132,6 +144,19 @@ The images below shows the results of the tests that were ran against the 4 serv
 ___
 
 This section will very briefly give a quick overview of the application itself.
+
+***How the application works***
+
+The first step I'd like to go through is how the micro-services will interact with each other. The diagram below will be used to help me explain this.
+
+<p><img src="https://github.com/Jamalh8/QA-Practical-Project/blob/feature/ansible/images_and_diagram/Service-diagram.png" alt="test" width="800" height="600"></p>
+
+- The user will interact with the front-end via the Nginx reverse proxy service. The Nginx reverse proxy will be set to listen on port 80. 
+- The front-end will receive the users request to generate the random information and receive a logical output from this. 
+- Car-Api and Driver-Api will generate and send the random information to the front-end. 
+- The front-end will send this information as a json to the Rating-Api.
+- The Rating-Api will then return a logical output based on the json information it receivies from the front-end. 
+- This information is finally displayed to the user on the front-end via the nginx service. 
 
 ***Home Page***
 
@@ -151,10 +176,28 @@ If the user clicks 'generate' again, another set of random driver and car is gen
 
 <p><img src="https://github.com/Jamalh8/QA-Practical-Project/blob/feature/jenkinsfile/images_and_diagram/app-generate-2.png" alt="test" width="1000" height="450"></p>
 
+
+### Swarm Overview
+___
+
+I will be using the diagram below to explain how swarm will run for my application.
+
+<p><img src="https://github.com/Jamalh8/QA-Practical-Project/blob/feature/ansible/images_and_diagram/Service-swarm-diagram.png" alt="test" width="1000" height="700"></p>
+
+I will have 3 VM's as part of my deployment. One for nginx, one as swarm-manager, and one as swarm-worker.
+
+- The nginx VM will act as a proxy load balancer for the swarm-manager and worker. It will display the application on port 80. By using this load balancer it allows me to remove the firewall rule for port 80 on both my swarm-manager and worker VM. This means the application can only be viewed via the nginx public IP.
+
+- The swarm-manager VM will be configured via an ansible playbook. The swarm-manager will deploy my application via my docker-compose file. The manager will dictate which containers will be on the manager VM and which one will be on the worker VM.
+
+- The swarm-worker VM will also be configured via an ansible playbook. The swarm-worker will be joined to the swarm-manager via the ansible playbook so that it's already initialised before I deploy my application. The swarm-manager will dictate the containers that the swarm-worker will run.
+
+I'm only using 1 swarm-worker VM at this current stage, however I do have the ability to increase the number of workers. All I need to do is set up more VM's and use ansible playbook to configure these VM's and add them to the swarm network. 
+
 ### Ansible Playbook
 ___
 
-Ansible was used to configure and install dependencies on the VM's that will deploy my application. This was done through the use of roles and an ansible-playbook. 
+Ansible was used to configure and install dependencies on the VM's that will deploy my application. This was done through the use of roles and an ansible-playbook. My ansible-playbook can be found by clicking [here](https://github.com/Jamalh8/QA-Practical-Project/tree/feature/ansible/config)
 
 Ansible was used for the following tasks:
 - Install docker onto `swarm-manager` `swarm-worker` and `nginx-lb` VM.
@@ -219,7 +262,7 @@ ___
 > Several feature branch were used to ensure that a stable version of the application is available for use.
 
 `Development Environment`
-> My development environment was an Ubuntu 20.04 LTS virtual machine (VM) hosted on Google Cloud Platform (GCP). I used SSH to connect my Visual Studio code to the GCP VM where I developed my application. 
+> My development environment was an Ubuntu 18.04 LTS virtual machine (VM) hosted on Google Cloud Platform (GCP). I used SSH to connect my Visual Studio code to the GCP VM where I developed my application. 
 
 `CI/CD Server`
 > Jenkins was used as the CI/CD server as my automation environment. 
@@ -229,6 +272,9 @@ ___
 `Containerisation`
 > Docker was used as my containerisation tool. There are many advantages to containeration my application. Using containers can create predictable environments that are isolated from other apps. We can have a cost-effective and a speedy deployment. I can also roll back to a previous of my application by using a different image. There are just a few advantages of containerising my application.
 
+`Orchestration Tool`
+> Docker swarm was used as my orchestration tool.
+
 `Ansible`
 > Ansible was used as my configuration management tool. As mentioned previously, I used this to configure and set up my deployment VM's.
 
@@ -236,7 +282,16 @@ ___
 
 To help understand the flow of my CI/CD, and how automation was implemented, a diagram is shown below to explain this.
 
+<p><img src="https://github.com/Jamalh8/QA-Practical-Project/blob/feature/ansible/images_and_diagram/CDCI-diagram-complete.png" alt="test" width="1000" height="650"></p>
 
+Trello was used to organise the tasks that were required to complete the project. I'd pull and update the tasks using my Development Environment. Once the tasks were completed, all changes were pushed up to GitHub. Any changes that I made directly on GitHub, I'd use the pull to update this on my development environment. 
+
+A GitHub webhook was intergrated with Jenkins. This meant that everytime I made changes up to GitHub, the webhook would trigger Jenkins to do the following:
+
+- Run tests, using the pytest module. 
+- Run ansible playbook to install my dependecies onto the deployment VMs and initialise a swarm.
+- Build and Push images to my dockerhub repository.
+- Deploy my application to the swarm that was initialised using the Ansible playbook.
 
 ### Challenges faced
 ___
@@ -245,13 +300,13 @@ There were several difficulties I face during this project. I'll be noting the 3
 
 ***1. Creating the ansible playbook.***
 
-This was a new tool that I've not used before and had to learn this from scratch. I was lucky enough to have been taught the basics of ansible by my tutors. This provided me with the platform to build upon and take the step into the unknown and try something new. I learnt to use ansible-doc and ansible-galaxy to find the relevant information required to create my playbook. 
+This was a new tool that I've not used before and had to learn this from scratch. I was lucky enough to have been taught the basics of ansible by my tutors. This provided me with the platform to build upon. For me it was like taking the step into the unknown and try something new. I learnt to use ansible-doc and ansible-galaxy to find the relevant information to create my playbook. 
 
 I had several playbook failures during this project. However, it was a great learning process as it helped understand the issues and research how I can correct these.
 
 ***2. Creating a successful Jenkins Pipeline.***
 
-A Jenkins pipeline job was another section that I've not used before. Although I used Jenkins in the past I only used freestyle to do my automation.
+A Jenkins pipeline job was another section that I've not used before. Although I used Jenkins in the past I only used the freestyle project feature.
 
 I had several build failures. The below image will show that I had 130 build failures before I finally got the automation to work as intended.
 
@@ -261,15 +316,36 @@ The most difficult part of the pipeline for me was to implement Ansible, build a
 
 ***3.Building of several Micro-services***
 
-I have used Flask to build a single web application in the past but this was my first time dipping my toes into micro-services that communicate with each other. Once again, I was lucky to have tutors that gave me the basic knowledge to create my own micro-services application. 
+I have used Flask to build a single web application in the past but this was the first time dipping my toes into micro-services that communicate with each other. Once again, I was lucky to have tutors that gave me the basic knowledge to create my own micro-services application. 
 
 Most noteably, the difficult part of this section was to obtain the random information from service 2 and 3 and use service 4 to provide a logical output. 
 
 ### Future Improvements
 ___
 
+I current have a few things in mind that I'd like to implement into my project for future improvements.
+
+1. Implement a SQL service that persists the data and saves it. This way the user can look back on previous outputs.
+2. Extend ansible playbook to create GCP VM's. Install and set up Jenkins. Deploy application to docker swarm via ansible. 
+3. Have more micro-services that interact with each other. Possible have more random information generator and use that information to create more logical outputs.
+
+
 ### Conclusion
 ___
+
+I'm proud in being able to complete this project. I've successfully implemented the minimum requirements for the project but also pushed myself to do more.
+
+For example, I used an nginx load balancer. This was not required in my project but I was able to successfully use it. 
+
+I also made great use of the ansible-playbook. I was required to at the most least use it to install docker. 
+
+However, I successfully used it to install docker on 3 different VM and install the dependicies on them. I also copied over relevant files to run my application and initialise a swarm with the manager VM and worker VM ready to deploy my application to the swarm network. 
+
+My skills with ansible and jenkins have improved vastly. I feel that I now have more confidence on using these tools.
+
+This project has given me progessional in my tech career. I have further enhanced my tech knowledge but also the tools at my disposal. 
+
+I very much look forward to the next challenge that awaits.
 
 ### Credits
 ___
