@@ -14,7 +14,7 @@
 
 [Application Overview](#Application-Overview)
 
-[Ansible Playbook] (#Ansible-Playbook)
+[Ansible Playbook](#Ansible-Playbook)
 
 [CICD Pipeline](#CICD-Pipeline)
 
