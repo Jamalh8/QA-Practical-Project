@@ -284,7 +284,7 @@ ___
 
 To help understand the flow of my CI/CD, and how automation was implemented, a diagram is shown below to explain this.
 
-<p><img src="https://github.com/Jamalh8/QA-Practical-Project/blob/feature/ansible/images_and_diagram/CDCI-diagram-complete.png" alt="test" width="1000" height="650"></p>
+<p><img src="https://github.com/Jamalh8/QA-Practical-Project/blob/dev/images_and_diagram/CI-CD-redone.png" alt="test" width="1000" height="650"></p>
 
 Trello was used to organise the tasks that were required to complete the project. I'd pull and update the tasks using my Development Environment. Once the tasks were completed, all changes were pushed up to GitHub. Any changes that I made directly on GitHub, I'd use the pull to update this on my development environment. 
 
