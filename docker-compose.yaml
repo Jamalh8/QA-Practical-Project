@@ -2,7 +2,7 @@ version: "3.8"
 services:
   service_1:
     container_name: front-end
-    image: jamalh8/cars-front:1
+    image: jamalh8/cars-front:2
     deploy:
       replicas: 3
     build: ./front-end
@@ -10,7 +10,7 @@ services:
       - car-net
   service_2:
     container_name: driver-api
-    image: jamalh8/cars-drivers:1
+    image: jamalh8/cars-drivers:2
     deploy:
       replicas: 3
     build: ./driver-api
@@ -26,7 +26,7 @@ services:
       - car-net
   service_4:
     container_name: rating-api
-    image: jamalh8/cars-rating:1
+    image: jamalh8/cars-rating:2
     deploy:
       replicas: 3
     build: ./rating-api
