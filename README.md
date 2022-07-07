@@ -337,7 +337,7 @@ I current have a few things in mind that I'd like to implement into my project f
 
 1. Implement a SQL service that persists the data and saves it. This way the user can look back on previous outputs.
 2. Extend ansible playbook to create GCP VM's. Install and set up Jenkins. Deploy application to docker swarm via ansible. 
-3. Have more micro-services that interact with each other. Possible have more random information generator and use that information to create more logical outputs.
+3. Have more micro-services that interact with each other. Possibly have more random information generator and use that information to create more logical outputs.
 
 
 ### Conclusion
