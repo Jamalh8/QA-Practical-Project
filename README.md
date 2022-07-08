@@ -6,9 +6,9 @@
 
 [Application Idea and Design](#Application-Idea-and-Design)
 
-[Project tracking](#Project-tracking)
+[Project Tracking](#Project-tracking)
 
-[Risk assesment](#Risk-assesment)
+[Risk Assesment](#Risk-assesment)
 
 [Unit Test](#Unit-Test)
 
@@ -20,7 +20,7 @@
 
 [CICD Pipeline](#CICD-Pipeline)
 
-[Challenges faced](#Challenges-Faced)
+[Challenges Faced](#Challenges-Faced)
 
 [Future Improvements](#Future-Improvements)
 
@@ -84,7 +84,7 @@ A visual design of the application front end can be seen below.
 
 <p><img src="https://github.com/Jamalh8/QA-Practical-Project/blob/feature/jenkinsfile/images_and_diagram/Application-design.png" alt="test" width="1000" height="450"></p>
 
-### Project tracking
+### Project Tracking
 ___
 
 **Requirements** 
@@ -110,7 +110,7 @@ This particular task can be taken to the project backlog as part of future impro
 
 You can view my trello board directly by clicking [here](https://trello.com/b/r4G0troy/qa-practical-proj).
 
-### Risk assesment
+### Risk Assesment
 ___
 
 A short risk assesment was carried out prior to the start of this project. I indentfied some possible risks that may occur along the way, the probability of this happening, the impact this will have, and how I can mitigate these.
