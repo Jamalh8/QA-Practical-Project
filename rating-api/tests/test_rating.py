@@ -108,3 +108,28 @@ class TestRatings(TestBase):
         response = self.client.post(url_for('rating'), json={"driver": "Nicholas Latifi", "car": "Williams-Mercedes"})
         self.assertEqual(response.status_code, 200)
         self.assertIn(b'125', response.data)
+
+    def test_get_rating21(self):
+        response = self.client.post(url_for('rating'), json={"driver": "Ayrton Senna", "car": "Ferrari"})
+        self.assertEqual(response.status_code, 200)
+        self.assertIn(b'245', response.data)
+
+    def test_get_rating22(self):
+        response = self.client.post(url_for('rating'), json={"driver": "Niki Lauda", "car": "Haas-Ferrari"})
+        self.assertEqual(response.status_code, 200)
+        self.assertIn(b'195', response.data)
+
+    def test_get_rating23(self):
+        response = self.client.post(url_for('rating'), json={"driver": "Michael Schumacher", "car": "McLaren-Mercedes"})
+        self.assertEqual(response.status_code, 200)
+        self.assertIn(b'230', response.data)
+
+    def test_get_rating24(self):
+        response = self.client.post(url_for('rating'), json={"driver": "Nigel Mansell", "car": "Mercedes-AMG"})
+        self.assertEqual(response.status_code, 200)
+        self.assertIn(b'230', response.data)
+
+    def test_get_rating25(self):
+        response = self.client.post(url_for('rating'), json={"driver": "Martin Brundle", "car": "Red Bull Racing"})
+        self.assertEqual(response.status_code, 200)
+        self.assertIn(b'230', response.data)
